@@ -7,4 +7,4 @@ Websites created:
 Biography website (no css, attributes, introduces paragraphs and headings)
 
 ### lists
-Biography website (no css, attributes, introduces lists (ul vs ol) and text tags (<b> and <em>))
+Recipes website (no css, attributes, introduces lists (ul vs ol) and text tags (<b> and <em>))
