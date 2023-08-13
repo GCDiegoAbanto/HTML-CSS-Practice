@@ -8,3 +8,9 @@ Biography website (no css, attributes, introduces paragraphs and headings)
 
 ### lists
 Recipes website (no css, attributes, introduces lists (ul vs ol) and text tags (<b> and <em>))
+
+### anchors
+3 websites:
+  - Landing page (blog.html) with navigation to other sites
+  - Page with random posts and anchors within the same page (posts.html)
+  - Slightly updated version of the biography website (bio_with_links.html)
