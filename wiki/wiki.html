@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-Wiki</title>
+
+    <!-- Will move to css file if submission allows more than one file -->
+    <style>
+        body{
+            background-image: url("img/back.jpg");
+            background-size: 100vw 100vh; /* Works more accurately than cover*/
+            background-repeat: no-repeat;
+            background-position: fixed;
+        }
+
+        #title{
+            text-align: center;
+            font-size: 5em;
+            /* More graceful than just putting a white background behind it*/
+        }
+
+        #logo-large{
+            width: 25vw;
+            height: 20vh;
+            position: relative;
+            
+        }
+
+        h1, h2{
+            color: white;
+            -webkit-text-stroke-width: 3px;
+            -webkit-text-stroke-color: black;
+            /* I apologize for comic sans, but it's a joke in one of Toby's games */
+            font-family: "Comic Sans MS";
+        }
+
+        
+        #TOP{
+            position: relative;
+            top: -5vh;
+            width: 99vw;
+            height: 15vh;
+        }
+
+        #lang{
+            font-size: 2em;
+            background: none;
+            border: none;
+        }
+        
+        .top_th{
+            width: 33vw;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Top of Page div --> 
+    <table id="TOP">
+        <tr>
+            <!-- Icon that should shrink when collapsing the side bar-->
+            <th class="top_th" style="text-align: left"><img id="logo-large" src="img/icon_large.png"></th>
+            <th class="top_th"><h1 id="title">Toby Fox</h1></th>
+            <!-- Change language button -->
+            <th class="top_th"><button id="lang"><h2>EN</h2></button></th>
+        </tr>
+    </table>
+    
+</body>
+</html>
