@@ -9,36 +9,45 @@
     <style>
         body{
             background-image: url("img/back.jpg");
-            background-size: 100vw 100vh; /* Works more accurately than cover*/
+            background-attachment: fixed; /* Makes the image stay in place when scrolling */
+            background-size: cover; /* Works more accurately than cover*/
             background-repeat: no-repeat;
-            background-position: fixed;
+             /* I apologize for comic sans, but it's a joke in one of Toby's games */
+             font-family: "Comic Sans MS";
+            color: white;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: black; /* Text outline to make it more visible */
+            
+            overflow-x: hidden;
+        
         }
 
         #title{
             text-align: center;
-            font-size: 5em;
+            font-size: 4em;
+            margin: 0 0 0 0;
             /* More graceful than just putting a white background behind it*/
         }
 
         #logo-large{
-            width: 25vw;
+            width: 16vw;
             height: 20vh;
-            position: relative;
+            top: 3vh;
+            position: fixed;
             
         }
 
-        h1, h2{
+        /* This one did not like the global body font style, probably since it is
+        inside a button */
+        h2{
             color: white;
-            -webkit-text-stroke-width: 3px;
-            -webkit-text-stroke-color: black;
-            /* I apologize for comic sans, but it's a joke in one of Toby's games */
             font-family: "Comic Sans MS";
         }
 
         
         #TOP{
             position: relative;
-            top: -5vh;
+            top: 0vh;
             width: 99vw;
             height: 15vh;
         }
@@ -53,19 +62,199 @@
             width: 33vw;
         }
 
+        /* It pains me how this is not mobile compatible, but I doubt
+        that has been discussed too deeply at this stage */
+        #nav{
+            position: fixed; /* So it follows the user as they scroll */
+            left: 2vw;
+            font-weight: bold;
+            top: 25vh;
+            color: white;
+            font-size: 1.8em;
+            padding-left: 1vw;
+            width: 13vw;
+            line-height: 8vh;
+            background-color: #4b1842f1;
+        }
+
+        #hide{
+            border: none; 
+            background: none; 
+            color: white;
+            text-align: right;
+            -webkit-text-stroke-width: 0.4px;
+        }
+
+        a:hover, a:visited:hover, #hide:hover{
+            color: lightpink;
+        }
+
+        a:active, a:visited:active, #hide:active{
+            color: purple ;
+        }
+
+        /* I want the links to look the same after visited */
+        a, a:visited{
+            color: white;
+            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-color: black;
+        }
+
+        #toby{
+            top: 12vh;
+            width: 10vw;
+            height: 15vh;
+            float: left;
+            margin: 10px 10px 0px 2px
+        }
+
+        .content{
+            background-color: #4b1842f1;
+            overflow-wrap: normal;
+            display: grid;
+            position: relative;
+            top: -4vh;
+            left: 20vw;
+            width: 73vw;
+            font-size: 1.2em;
+            -webkit-text-stroke-width: 1px;
+            height: 70vh;
+            padding: 0px 12px 0px 12px;
+            text-align: justify;
+            margin-bottom: 5vh;
+        }
+
+        #life_desc{
+            margin: 0;
+        }
+        
+        .wrap{
+            position: relative;
+            top: -12vh;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Top of Page div --> 
+    <!-- Top of Page table (to keep elements aligned) with icon, title and language button --> 
     <table id="TOP">
         <tr>
             <!-- Icon that should shrink when collapsing the side bar-->
             <th class="top_th" style="text-align: left"><img id="logo-large" src="img/icon_large.png"></th>
             <th class="top_th"><h1 id="title">Toby Fox</h1></th>
-            <!-- Change language button -->
+            <!-- Change language button, should be a dropdown -->
             <th class="top_th"><button id="lang"><h2>EN</h2></button></th>
         </tr>
     </table>
+
+    <!-- Navigation sidebar with anchors to sections of the website -->
+    <div id="nav">
+        <a href="#life">D-Life</a> <br>
+        <a href="#career">D-Career</a> <br>
+        <a href="#works">D-Works</a> <br>
+        <a href="#references">References</a> <br>
+        <a href="#links">Links</a> <br>
+        <button id="hide">[hide]</button>
+        
+    </div>
+
+    <!-- First of many text sections! (boring class name though)-->
+    <div id="life" class="content">
+        <h3>Life</h3>
+        <div class="wrap">
+        
+        <div style="width: 20vw;">   
+            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
+            <div>
+
+            </div>
+        
+        </div>
+        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        
+        </div>
+
+    </div>
+
     
+    <!-- SECTION DIVISION -->
+
+    <div id="career" class="content">
+        <h3>Life</h3>
+        <div class="wrap">
+        
+        <div style="width: 20vw;">   
+            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
+            <div>
+
+            </div>
+        
+        </div>
+        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        
+        </div>
+    </div>
+
+
+    <!-- SECTION DIVISION -->
+
+
+    <div id="works" class="content">
+        <h3>Life</h3>
+        <div class="wrap">
+        
+        <div style="width: 20vw;">   
+            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
+            <div>
+
+            </div>
+        
+        </div>
+        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        
+        </div>
+
+    </div>
+
+
+    <!-- SECTION DIVISION -->
+
+
+    <div id="references" class="content">
+        <h3>Life</h3>
+        <div class="wrap">
+        
+        <div style="width: 20vw;">   
+            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
+            <div>
+
+            </div>
+        
+        </div>
+        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        
+        </div>
+    </div>
+
+
+    <!-- SECTION DIVISION -->
+
+
+    <div id="links" class="content">
+        <h3>Life</h3>
+        <div class="wrap">
+        
+        <div style="width: 20vw;">   
+            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
+            <div>
+
+            </div>
+        
+        </div>
+        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        
+        </div>
+    </div>
+
 </body>
 </html>
