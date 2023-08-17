@@ -15,7 +15,7 @@
              /* I apologize for comic sans, but it's a joke in one of Toby's games */
              font-family: "Comic Sans MS";
             color: white;
-            -webkit-text-stroke-width: 2px;
+            -webkit-text-stroke-width: 3px;
             -webkit-text-stroke-color: black; /* Text outline to make it more visible */
             
             overflow-x: hidden;
@@ -30,9 +30,8 @@
         }
 
         #logo-large{
-            width: 16vw;
-            height: 20vh;
-            top: 3vh;
+            width: 15vw;
+            height: 16vh;
             position: fixed;
             
         }
@@ -42,6 +41,7 @@
         h2{
             color: white;
             font-family: "Comic Sans MS";
+            margin: 0;
         }
 
         
@@ -52,27 +52,46 @@
             height: 15vh;
         }
 
+        #lang_cont{
+            position: absolute;
+            right: 10vw;
+            top: 3vh;
+        }
+
         #lang{
             font-size: 2em;
             background: none;
             border: none;
         }
-        
-        .top_th{
-            width: 33vw;
+
+        #globe{
+            width: 45px;
+            height: 45px;
+            
         }
 
+        #bio{
+            float: right;
+            padding: 0px 10px 0px 10px;
+            margin: 10px 0px 0px 10px;
+            max-width: 17vw;
+            background-color: black;
+            font-size: 0.9em;
+            line-height: 1em;
+            text-align: left;
+            -webkit-text-stroke-width: 0.5px;
+        }
+        
         /* It pains me how this is not mobile compatible, but I doubt
         that has been discussed too deeply at this stage */
         #nav{
             position: fixed; /* So it follows the user as they scroll */
-            left: 2vw;
+            left: 1vw;
             font-weight: bold;
-            top: 25vh;
+            top: 16.5vh;
             color: white;
-            font-size: 1.8em;
+            font-size: 1.7em;
             padding-left: 1vw;
-            width: 13vw;
             line-height: 8vh;
             background-color: #4b1842f1;
         }
@@ -86,11 +105,12 @@
         }
 
         a:hover, a:visited:hover, #hide:hover{
-            color: lightpink;
+            /* Color of the undertale heart */
+            color: #01A0EA ;
         }
 
         a:active, a:visited:active, #hide:active{
-            color: purple ;
+            color: #FE0000;
         }
 
         /* I want the links to look the same after visited */
@@ -100,97 +120,216 @@
             -webkit-text-stroke-color: black;
         }
 
+        /* Individual images within the wiki */
+
         #toby{
             top: 12vh;
             width: 10vw;
             height: 15vh;
             float: left;
-            margin: 10px 10px 0px 2px
+            margin: 10px 10px 0px 0px
         }
+
+        #undertale{
+            width: 20vw;
+            height: 15vh;
+            float: right;
+            margin: 10px 0px 0px 10px
+        }
+
+        #deltarune{
+            width: 20vw;
+            height: 15vh;
+            float: left;
+            top: 2vh;
+            margin: 10px 10px 0px 0px;
+        }
+
+        /* End of images, beginning of container and text wrappers */
 
         .content{
             background-color: #4b1842f1;
-            overflow-wrap: normal;
-            display: grid;
             position: relative;
-            top: -4vh;
-            left: 20vw;
+            left: 18vw;
             width: 73vw;
             font-size: 1.2em;
+            overflow: auto;
             -webkit-text-stroke-width: 1px;
-            height: 70vh;
             padding: 0px 12px 0px 12px;
             text-align: justify;
             margin-bottom: 5vh;
         }
-
-        #life_desc{
-            margin: 0;
-        }
         
         .wrap{
             position: relative;
-            top: -12vh;
+            block-size: fit-content;
+            margin: 0 0 0 0;
         }
+
+        h3{
+            padding: 2vh 0 0 0;
+            margin: 0 0 0 0;
+        }
+
+        /* All the way here to the end of the webkit animation was found on stack overflow.
+        I have limited understanding of many webkit functions but they are straightforward to
+        deconstruct when found online. */
+        #dog{
+            height: 17vh;
+            position: fixed;
+            bottom: 5vh;
+            -webkit-animation: linear infinite;
+            -webkit-animation-name: run;
+            -webkit-animation-duration: 5s;
+        }
+
+        /* This is a personal addition, it only triggers when hovering so you can hold the
+        cursor over the dog. */
+        #dog:hover{
+            content: url("https://media.tenor.com/2UYGTk1wkEwAAAAi/annoying-dog-undertale.gif");
+            height: 15vh;
+            width: 15%;
+        }
+
+        @-webkit-keyframes run {
+            0% {
+                right: 0;
+            }
+            48% {
+                -webkit-transform: rotateY(0deg); 
+            }
+            50% { 
+                right: calc(100% - 120px);
+                -webkit-transform: rotateY(180deg); 
+            }
+            98% {
+                -webkit-transform: rotateY(180deg); 
+            }
+            100% {
+                right: 0;    
+                -webkit-transform: rotateY(0deg);
+            }
+        }
+        /* Credits for this animation: https://stackoverflow.com/questions/41587802/css-animation-from-left-to-right */
 
     </style>
 </head>
 <body>
+    
+    <!-- This behaves uniquely in browsers that use -webkit such as chrome and safari.
+    By placing this before any other element of the site I can guarantee its position below
+    everything that matters. -->
+    <img alt="annoying_dog_running" id="dog" src="https://static.wikia.nocookie.net/undertale/images/0/0b/Annoying_Dog_sprite.gif/revision/latest/thumbnail/width/360/height/360?cb=20160125092850">
+    
     <!-- Top of Page table (to keep elements aligned) with icon, title and language button --> 
-    <table id="TOP">
-        <tr>
-            <!-- Icon that should shrink when collapsing the side bar-->
-            <th class="top_th" style="text-align: left"><img id="logo-large" src="img/icon_large.png"></th>
-            <th class="top_th"><h1 id="title">Toby Fox</h1></th>
-            <!-- Change language button, should be a dropdown -->
-            <th class="top_th"><button id="lang"><h2>EN</h2></button></th>
-        </tr>
-    </table>
+    <div id="TOP">
+        <!-- Icon that should shrink when collapsing the side bar-->
+        <img id="logo-large" src="img/icon_large.png">
+        <h1 id="title">Toby Fox</h1>
+        <!-- Change language button, should be a dropdown -->
+        <div id="lang_cont"><img alt="earth icon" id="globe" src="https://www.freeiconspng.com/thumbs/earth-png/earth-png-17.png"><button id="lang"><h2>EN</h2></button></div>
+    </div>
 
     <!-- Navigation sidebar with anchors to sections of the website -->
     <div id="nav">
         <a href="#life">D-Life</a> <br>
         <a href="#career">D-Career</a> <br>
         <a href="#works">D-Works</a> <br>
-        <a href="#references">References</a> <br>
+        <a href="#references">References</a>&nbsp; <br>
         <a href="#links">Links</a> <br>
-        <button id="hide">[hide]</button>
+        <button onclick="collapse()" id="hide">[hide]</button>
         
     </div>
 
     <!-- First of many text sections! (boring class name though)-->
     <div id="life" class="content">
+
         <h3>Life</h3>
-        <div class="wrap">
         
-        <div style="width: 20vw;">   
-            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
-            <div>
+        <div class="wrap">  
+            <img alt="picture of toby fox" id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
+        
+        <div id="bio">
+            <!-- Wikipedia and https://nationaltoday.com/birthday/toby-fox/-->
+            <p><b>Name: </b> Robert F. Fox</p>
+            
+            <p><b>Born: </b> October 11, 1991 (age 31) Manchester, New Hampshire, U.S.</p>
+            
+            <p><b>Active: </b> 2008-present </p>
 
-            </div>
-        
-        </div>
-        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
-        
+            <p><b>Status: </b> Single </p>
+            
+            <p><b>Height: </b> 5'8"</p>
+            
+            <p><b>Networth: </b> $3 million</p>
+
         </div>
 
+        
+        <!-- Source: https://en.wikipedia.org/wiki/Toby_Fox -->
+        <!-- To save time I'm copying sections from the official wikipedia site, though students
+        will have to do more research as they have more time -->
+        <p >Robert F. "Toby" Fox (born October 11, 1991) is an American video game 
+            developer and composer. He is known for developing the role-playing video games Undertale 
+            and Deltarune for which the former garnered acclaim and has received nominations for a
+            British Academy Game Award, three Game Awards and D.I.C.E. Awards.
+            <br> <br>
+
+            Fox's early work consisted primarily of composing music, notably doing so for the 
+            webcomic Homestuck, and, following the success of Undertale, he went on to compose music
+            for a number of other independent video games. Other notable works include contributingto the soundtracks of Super Smash Bros. Ultimate and three Pokémon video games.</p>
+
+
+        </div>
+        
+           
     </div>
 
     
     <!-- SECTION DIVISION -->
 
     <div id="career" class="content">
-        <h3>Life</h3>
+        <h3>Career</h3>
         <div class="wrap">
-        
-        <div style="width: 20vw;">   
-            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
-            <div>
+         
+            <p >Toby Fox's earliest well-known work is his "EarthBound Halloween Hack",
+                a Halloween-themed ROM hack of the 1994 SNES game EarthBound, which released in 2008. 
+                He then moved on to compose a variety of music for Andrew Hussie's 2009 webcomic 
+                Homestuck during his senior year of high school. Though he did not initially respond 
+                when Hussie started a "Music Contribution Team" in April 2009 and put up a news post
+                asking composers to participate, Hussie took note of his work when Fox started 
+                uploading piano covers of the webcomic's music on the MS Paint Adventures forums.
+                Fox has composed music for the 2017 Homestuck video game Hiveswap,
+                Undertale artist Temmie Chang's short narrative game Escaped Chasm,
+                and Game Freak's 2019 RPG Little Town Hero, the last of which was arranged by 
+                Pokémon composer Hitomi Sato.</p>
 
-            </div>
+            <img id="undertale" src="https://i.redd.it/ut18p3d4oh281.png">
         
-        </div>
-        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+            <p>Fox'smost well-known work is the 2015 role-playing video game Undertale, which he also
+            composed the soundtrack for. The game sold more than 1 million copies, becoming a
+            "breakout hit" and "pop-culture phenomenon". Fox worked on the entire game independently, besides the art assets—which he
+            asked Temmie (Tuyoki) Chang to help with—to avoid relying on others. He had some
+            experience in game development before Undertale, using RPG Maker 2000 with his three
+            brothers to make role-playing games and EarthBound ROM hacks in high school,
+            the most notable of which was Earthbound: The Halloween Hack. He thought of the
+            character designs and ideas for Undertale while in college, where he drew them in
+            his notebook.</p>
+
+            <img id="deltarune" src="https://www.gamespot.com/a/uploads/original/1574/15747411/3459761-dr3.jpg">
+        
+            <p>On October 30, 2018, Fox tweeted a request for fans of Undertale to check the game's
+            official Twitter account in 24 hours. The following day, Fox released the first chapter
+            of the followup to Undertale, named Deltarune, (an anagram of undertale) for free under
+            the guise of a "survey". On November 1, Fox shared more details regarding the
+            game, including that the rest of the chapters were expected to release simultaneously,
+            but work had not yet started, and there was no estimated timeframe for completion.
+            Fox also stated that he had been working on the project since 2012, and that the idea
+            for Undertale developed from Deltarune during production. On June 12, 2019, as
+            only the first chapter of Deltarune had been playable for several months, Fox
+            expressed on his Twitter account he had hope he would complete the rest of Deltarune,
+            saying: "Slowly I'm writing and drawing it all out." He stated that he had
+            written "about 50 songs past Chapter 1".</p>
         
         </div>
     </div>
@@ -200,9 +339,8 @@
 
 
     <div id="works" class="content">
-        <h3>Life</h3>
+        <h3>Works</h3>
         <div class="wrap">
-        
         <div style="width: 20vw;">   
             <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
             <div>
@@ -210,7 +348,7 @@
             </div>
         
         </div>
-        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
         
         </div>
 
@@ -221,7 +359,7 @@
 
 
     <div id="references" class="content">
-        <h3>Life</h3>
+        <h3>References</h3>
         <div class="wrap">
         
         <div style="width: 20vw;">   
@@ -231,7 +369,7 @@
             </div>
         
         </div>
-        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
         
         </div>
     </div>
@@ -241,7 +379,7 @@
 
 
     <div id="links" class="content">
-        <h3>Life</h3>
+        <h3>External Links</h3>
         <div class="wrap">
         
         <div style="width: 20vw;">   
@@ -251,10 +389,67 @@
             </div>
         
         </div>
-        <p id="life_desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
         
         </div>
     </div>
 
 </body>
+
+<!-- Not a fan of js inside an html document, but doing it to only submit one main file -->
+<script>
+    // Global variables are a bad practice but in this case we need it to see if the 
+    // Bar is already collapsed
+    var collapsed = false;
+    var previousNav = ""
+
+    function collapse(){
+        // If the bar is already collapsed we run this and not the rest of the code
+        if(collapsed){
+            document.getElementById("nav").innerHTML = previousNav 
+            // We technically only needed to copy it once, and could add an
+            // if statement to only copy the content if previousNav == ""
+
+            document.getElementById("logo-large").setAttribute("style", "") 
+            // Taking away the change so src takes priority
+            
+            var conts = document.getElementsByClassName("content");
+
+            for (let index = 0; index < conts.length; index++) {
+                conts[index].setAttribute("style", "")
+                // The css dimensions will kick in so no need to set them again manually
+            }
+            collapsed = false // Making it collapsable again
+            
+            return // This ends the function without running the rest of the code
+            // return has other uses, but this function does not return anything
+        }
+
+        // Lovely how ids and classes help css and js at the same time
+
+        previousNav = document.getElementById("nav").innerHTML // Saving the original navigator bar
+        document.getElementById("nav").innerHTML = "<img onclick='collapse()' src='https://cdn-icons-png.flaticon.com/512/2311/2311531.png' style='width:2vw;'>&nbsp"
+        /* Breakdown:
+        document.getElementById gets the element based on its id like css.
+        innerHTML refers to all the elements between the first tag of the chosen element
+        (in this case <div id="nav"> ) and the closing tag </div>
+        We replaced the navigation bar with a clickable image that calls this same function */
+        
+        // Shrinking the logo to make more space
+        document.getElementById("logo-large").setAttribute("style", "content: url('img/icon_small.png'); width: 5vw; height: 5vw; top: 5vh")
+       
+        /* This is the challenge for not using tables or div grids */
+        var conts = document.getElementsByClassName("content");
+
+        // Expanding every section of the site now that there is more space
+        for (let index = 0; index < conts.length; index++) {
+            conts[index].setAttribute("style", "width: 88vw; left: 6vw")
+            
+        }
+        
+        collapsed = true;
+
+    }
+</script>
+
 </html>
