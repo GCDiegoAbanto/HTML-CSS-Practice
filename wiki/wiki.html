@@ -1,3 +1,32 @@
+<!-- Flower Box:
+Author: Diego Abanto
+Description: D-wiki is a wiki page based on Wikipedia and Fandom, with this specific
+page based on Toby Fox being fully customized and style based on the two largest projects
+by him: Undertale and Deltarune. The website contains text in floating blocks that allow
+the background to be viewed slightly and has a navigation bar to jump to different sections.
+Date: 08/17/23
+Bugs: There is a visual glitch when loading the page due to the numerous styles and resizing
+of elements. The website is not mobile friendly, and is currently optimized for google chrome
+and safari.
+Challenges: The position of the floating blocks as well as spacing with the text and images
+proved difficult. The website is not currently dynamic enough to add text without significant
+updates to the style. 
+Sources: Most added on relevant sections with commentaries. Additional sources:
+
+https://www.w3schools.com/css/css_float.asp
+https://en.wikipedia.org/wiki/Toby_Fox
+https://konosuba.fandom.com/wiki/Kono_Subarashii_Sekai_ni_Shukufuku_wo!_Wiki (for background image 
+and side navigation bar inspiration)
+https://www.reddit.com/r/Undertale/comments/xeu6uh/happy_birthday_undertaledeltaruneart_by_ghostbento/ 
+(background art)
+https://www.w3.org/Style/Examples/007/units.en.html#:~:text=The%20em%20and%20ex%20units,font%2C%201em%20thus%20means%202in.
+(em measurement in css for font sizes)
+https://css-tricks.com/adding-stroke-to-web-text/
+(text strokes)
+
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,8 +142,8 @@
             color: #FE0000;
         }
 
-        /* I want the links to look the same after visited */
-        a, a:visited{
+        /* I want the links to look the same after visited in the nav bar */
+        #nav a, a:visited{
             color: white;
             -webkit-text-stroke-width: 2px;
             -webkit-text-stroke-color: black;
@@ -234,7 +263,7 @@
     <div id="nav">
         <a href="#life">D-Life</a> <br>
         <a href="#career">D-Career</a> <br>
-        <a href="#works">D-Works</a> <br>
+        <!-- Skipping this section for this version <a href="#works">D-Works</a> <br> -->
         <a href="#references">References</a>&nbsp; <br>
         <a href="#links">Links</a> <br>
         <button onclick="collapse()" id="hide">[hide]</button>
@@ -249,6 +278,7 @@
         <div class="wrap">  
             <img alt="picture of toby fox" id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
         
+        <!-- Bio on the side (using float) similar to wikipedia-->
         <div id="bio">
             <!-- Wikipedia and https://nationaltoday.com/birthday/toby-fox/-->
             <p><b>Name: </b> Robert F. Fox</p>
@@ -337,40 +367,39 @@
 
     <!-- SECTION DIVISION -->
 
-
+    <!-- This would section was meant to use tables which are not relevant to this assignment 
     <div id="works" class="content">
         <h3>Works</h3>
         <div class="wrap">
-        <div style="width: 20vw;">   
-            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
-            <div>
 
-            </div>
-        
-        </div>
-        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
-        
         </div>
 
     </div>
 
+    -->
 
     <!-- SECTION DIVISION -->
 
 
     <div id="references" class="content">
         <h3>References</h3>
-        <div class="wrap">
+        <div class="wrap" style="text-align: left;">
         
-        <div style="width: 20vw;">   
-            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
-            <div>
+        <!-- Not sure if they would have used these yet. They can make it with paragraphs and
+        adding the numbers manually though. I'll do that since those are the main tags
+        
+        <ol></ol>
+        
+        -->
 
-            </div>
-        
-        </div>
-        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
-        
+        <!-- https://www.w3schools.com/tags/att_a_target.asp 
+        Opening on a new tab is my personal preference. -->
+        <p>1. “Toby Fox.” Wikipedia, 16 Aug. 2023. Wikipedia, <a target="_blank" href="https://en.wikipedia.org/wiki/Toby_Fox">https://en.wikipedia.org/wiki/Toby_Fox</a>. Accessed 17 Aug. 2023.</p>
+        <p>2. “Toby Fox - Age, Bio, Birthday, Family, Net Worth.” National Today, <a target="_blank" href="https://nationaltoday.com/birthday/toby-fox/">https://nationaltoday.com/birthday/toby-fox/</a>. Accessed 17 Aug. 2023.</p>
+        <p>3. Who Is Toby Fox? Everything You Need to Know. <a target="_blank" href="https://www.thefamouspeople.com/profiles/toby-fox-48876.php">https://www.thefamouspeople.com/profiles/toby-fox-48876.php</a>. Accessed 17 Aug. 2023.</p>
+        <p>4. Undertale Wiki. <a target="_blank" href="https://undertale.fandom.com/wiki/Main_Page">https://undertale.fandom.com/wiki/Main_Page</a>. Accessed 17 Aug. 2023.</p>
+
+
         </div>
     </div>
 
@@ -381,15 +410,10 @@
     <div id="links" class="content">
         <h3>External Links</h3>
         <div class="wrap">
-        
-        <div style="width: 20vw;">   
-            <img id="toby" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
-            <div>
-
-            </div>
-        
-        </div>
-        <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra urna et purus hendrerit, ut vestibulum  massa ultricies. Cras cursus sodales cursus. Praesent scelerisque metus imperdiet, pretium ipsum tempus, gravida tellus. Integer sapien lectus, ornare placerat iaculis et, auctor ut dolor. Sed vestibulum efficitur dictum. Nulla eros nunc, luctus a mollis vitae, aliquet ac massa. Proin suscipit, sapien eu sodales porttitor, tortor ante imperdiet diam, in vehicula risus elit sit amet dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque fermentum finibus mollis. Nulla accumsan rutrum aliquet. Mauris bibendum orci quis metus posuere, at vestibulum justo volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+            <p><a target="_blank" href="https://twitter.com/tobyfox">https://twitter.com/tobyfox</a></p>
+            <p><a target="_blank" href="https://deltarune.com/">https://deltarune.com/</a></p>
+            <p><a target="_blank" href="https://undertale.com/">https://undertale.com/</a></p>
+    
         
         </div>
     </div>
