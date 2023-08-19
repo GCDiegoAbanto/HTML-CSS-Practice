@@ -133,12 +133,14 @@ https://css-tricks.com/adding-stroke-to-web-text/
             -webkit-text-stroke-width: 0.4px;
         }
 
-        a:hover, a:visited:hover, #hide:hover{
+        /* Interestingly without adding #nav this only applies to the links
+        outside of the bar. I will need to investigate further. */
+        #nav a:hover, a:visited:hover, #hide:hover{
             /* Color of the undertale heart */
             color: #01A0EA ;
         }
 
-        a:active, a:visited:active, #hide:active{
+        #nav a:active, a:visited:active, #hide:active{
             color: #FE0000;
         }
 

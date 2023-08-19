@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Division</title>
+
+    <style>
+        #bordered{
+            border: 5px solid black;
+        }
+
+        #colored{
+                background-color: orange;
+            }
+    </style>
+
+    <style id="borders">
+        
+    </style>
+
+    <style id="bg-color">
+        
+    </style>
+
+</head>
+<body>
+    <div class="bordered" id="title">
+        <h1>The div tag</h1>
+    </div>
+
+    <div>
+        <h3>Definition and Usage</h3>
+            <p>The &#60;div&#62; tag defines a division or a section in an HTML document.
+            <br><br>
+            The &#60;div&#62; tag is used as a container for HTML elements - which is then styled with CSS or manipulated with JavaScript.
+            <br><br>
+            The &#60;div&#62; tag is easily styled by using the class or id attribute.
+            <br><br>
+            Any sort of content can be put inside the &#60;div&#62; tag! 
+            <br><br>
+            Note: By default, browsers always place a line break before and after the &#60;div&#62; element.</p>
+
+    </div>
+
+    <div>
+        <h3>Different elements</h3>
+            <p>Like the previous section, this text is contained within a &#60;div&#62;. However, we
+                can also add an image inside of it!
+            </p>
+        <img src="https://images.vexels.com/media/users/3/220858/isolated/lists/c6a902eb5085b9373a1775c7c2824404-llama-animal-profile-illustration.png">
+    </div>
+    <br>
+    
+    <div id="bordered">
+        <h3>Div with borders</h3>
+        <p>As stated previously, the divisions are not visible without styling. Because of this,
+            there is a border on this one to get a better idea on how it works. 
+            <br>
+            This is what the css code looks like:
+            <br>
+            <br>
+            #bordered{<br>
+                &emsp;border: 5px solid black;<br>
+            }
+            <br>
+            <br>
+            This code is contained inside a &#60;style&#62; tag in the head of this html file.
+            The name #bordered is an id given to the div that contains this text, and it looks like this:
+            <br>
+            <br>
+            &#60;div id="bordered">&#62;
+        </p>
+    </div>
+    
+    <div id="colored">
+        <h3>Div with color</h3>
+        <p>This division has a colored background rather than a border. 
+            <br>
+            This is what the css code looks like:
+            <br>
+            <br>
+            #colored{<br>
+                &emsp;background-color: orange;<br>
+            }
+            <br>
+            <br>
+            This code is contained inside the same &#60;style&#62; tag in the head of this html file.
+            The name #colored is an id given to the div that contains this text, and it looks like this:
+            <br>
+            <br>
+            &#60;div id="colored">&#62;
+        </p>
+    </div>
+
+    <div class="bordered" id="cat">
+        <h3>Classes and tags</h3>
+        <p> You can apply the same style to different elements using the class attribute, or by adding  one style to all the instances of one element.
+            <br>
+            <em>An example of a class</em>
+            <br>
+            <br>
+            .bordered{<br>
+                &emsp;border: 5px solid purple;<br>
+            }
+            <br>
+            <br>
+            This would apply the border you can observe to all the tags with the attribute 
+            class = "bordered". A period (.) is used rather than a pound sign (#).
+            <br>
+            <br>
+            
+            <div id="borderExample">
+            Press this button to see what happens when you use the example with classes (this 
+            section and the title have this class): 
+            <button onclick="addBorders()">Toggle Borders</button>
+            
+
+            </div>
+            <br>
+            If we wanted all div tags to have a colored background, we can do so by using the following css code:
+
+            <br>
+            <br>
+            div{<br>
+                &emsp;background-color: red;<br>
+            }
+            <br>
+            <br>
+            Press one of these buttons to add a colored background to all the divisions: 
+            <button onclick="changeBackground(0)">Toggle Red</button> 
+            <button onclick="changeBackground(1)">Toggle Green</button> 
+            <button onclick="changeBackground(2)">Toggle Blue</button>
+
+        </p>
+
+    </div>
+
+    <div>
+        <h3>
+            Credits: <a href="https://www.w3schools.com/tags/tag_div.ASP">https://www.w3schools.com/tags/tag_div.ASP</a>
+        </h3>
+
+    </div>
+</body>
+
+<script>
+    var borderToggle = false
+    var bgToggle = -1
+    var surpriseText1 = false
+    var surpriseText2 = false
+
+    function addBorders(){
+        if(!surpriseText1){
+            document.getElementById("borderExample").innerHTML += "<br> <br> <b>Scroll up to see the borders around the title!<b>"
+            surpriseText1 = true // So the text will only be appended once
+        }
+         
+        if(borderToggle){
+            document.getElementById("borders").innerHTML = ""
+            borderToggle = false
+            return
+        }
+
+        document.getElementById("borders").innerHTML = ".bordered{border: 5px solid purple;}"
+        borderToggle = true
+    }
+
+    function changeBackground(col){
+        if(!surpriseText2){
+        
+            document.getElementById("cat").innerHTML += "<b>See how the orange background division above this one does not change? This is because an id is more specific than a general rule applied to all instances of an element. If you would like to learn more about specificity in CSS, take a look at this site: <br><a href='https://www.w3schools.com/css/css_specificity.asp'>https://www.w3schools.com/css/css_specificity.asp</a></b>"
+            surpriseText2 = true // So the text will only be appended once
+        }
+
+        if(bgToggle == col){
+            document.getElementById("bg-color").innerHTML = ""
+            bgToggle = -1
+            return
+        }
+
+        let color = ""
+        switch(col){
+            case 0: 
+                color = "red"
+                break
+            case 1:
+                color = "green"
+                break
+            case 2:
+                color = "blue"
+                break
+        }
+        document.getElementById("bg-color").innerHTML = "div{background-color: " + color + "}"
+
+        bgToggle = col
+    }
+</script>
+
+</html>
