@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS styles and Divs</title>
+
+    <style>
+        #title{
+            width: 100%; /* View width */
+            height: 13vh; /* View height */
+            margin-bottom: 5vh;
+            text-align: center;
+            font-size: 4em; /* 1em is the default font size for a paragraph. Multiplicative */
+            font-weight: bold;
+            position: sticky;
+            top: 0; /* This property only kicks in when the title is at the top exactly */
+            background-color: white; /* It's transparent by default, especially the text*/
+        }
+        
+        #title img{
+            vertical-align: middle;
+            max-height: 100%;
+            max-width: 20%;
+        }
+
+        #left-div{
+            left: 1vw;
+        }
+
+        #left-div2{
+            top: 50vh;
+            left: 1vw;
+        }
+
+        #right-div{
+            right: 1vw;
+        }
+
+        .fixed-divs{
+            width: 20vw;
+            background-color: lightgray;
+            position: fixed;
+            padding: 20px 20px 20px 20px;
+            text-align: center;
+        }
+
+        #center-container{
+            align-self: center;
+            text-align: justify;
+            padding-left: 25vw;
+            padding-right: 25vw;
+            left:0;
+        }
+
+        .inner-container{
+            position: static; /* This is static by default, but this is a helpful example*/
+            background-color: lightblue;
+            margin-bottom: 3vh;
+            padding: 10px 10px 10px 10px;
+        }
+
+        p, h3{
+            margin-top: 0;
+        }
+        
+        .css-text{
+            color: red;
+        }
+
+        .rel{
+            position: relative;
+        }
+
+    </style>
+
+    <style id="borders">
+
+    </style>
+
+    <style id="in-borders">
+
+    </style>
+
+</head>
+<body>
+    <br> <br> <!-- Without this the sticky property would not be appreciated. Sticky follows the
+    normal flow of the page. -->
+    <div id="title">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174854.png">
+        &nbsp; HTML and CSS &nbsp; <!-- Adding a p or h1 tag adds line breaks -->
+        <img src="https://assets.stickpng.com/images/62b2221b038aad4d3ed7ca30.png">
+    </div>
+
+
+    <div id="left-div" class="fixed-divs">
+        <div class="inner-borders">
+            <h3>Div visualization controls</h3>
+            <button onclick="addOutBorders()"> Toggle outer borders </button>
+            <br><br>
+            <button onclick="addInBorders()"> Toggle inner borders </button>
+        </div>
+        
+    </div>
+
+    <div id="left-div2" class="fixed-divs">
+        <div class="inner-borders">
+            <h3>Position property </h3>
+            <div class="rel" style="top:-2vh"><h3>Top</h3></div>
+            <div class="rel" style="left:-8vw"><h3>Left</h3></div>
+            <div class="rel" style="right:-8vw"><h3>Right</h3></div>
+            <div class="rel" style="bottom:-5vh"><h3>Bottom</h3></div>
+        </div>
+        
+    </div>
+
+    <div id="right-div" class="fixed-divs">
+        <div class="inner-borders">
+            <h3>Fixed position</h3>
+            <p>An element with <span class="css-text">position: fixed; </span> is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.
+            <br><br>
+            A fixed element does not leave a gap in the page where it would normally have been located. In other words, it is not considered in the normal flow of the page.
+            <br><br>
+            In this website, the two divs with the class "fixed-divs" on each side are fixed elements, and have the <span class="css-text">background-color: lightgray</span> 
+            </p>
+            
+        </div>
+    </div>
+
+
+    <div id="center-container">
+        <div class="inner-borders">
+            <div class="inner-container">
+                
+                <div class="inner-borders">
+                    <h3>Position property</h3>
+                    <p>The position property specifies the type of positioning method used for an element (static, relative, fixed, absolute or sticky). 
+                        <br><br>
+                    Elements are then positioned using the top, bottom, left, and right properties. However, these properties will not work unless the position property is set first. They also work differently depending on the position value.</p>
+                </div>
+            </div>
+
+        <div class="inner-container">
+            
+            <div class="inner-borders">
+                    <h3>Static position</h3>
+                    <p>HTML elements are positioned static by default.
+                    <br><br>
+                    An element with <span class="css-text">position: static;</span> is not positioned in any special way; it is always positioned according to the normal flow of the page:
+                    <br><br>
+                    Static positioned elements are not affected by the top, bottom, left, and right properties (which define how far an element is from the edges of the site in those directions).
+                    <br><br>
+                    In this website, divs with the class "inner-container" are static, and
+                    have the property <span class="css-text">background-color: lightblue</span>
+                </p>
+            </div>  
+        </div>
+
+        <div  id="rel-ex" class="inner-container">
+            <div class="inner-borders">
+            
+                <h3>Relative position</h3>
+                <p>An element with <span class="css-text">position: relative;</span> is positioned relative to its normal position.
+                <br><br>
+                Setting the top, right, bottom, and left properties of a relatively-positioned element will cause it to be adjusted away from its normal position. Other content will not be adjusted to fit into any gap left by the element.
+                <br><br>
+                Click this button to make this div relative and move it to the left: <button onclick="moveLeft()">MOVE</button>
+                </p>
+            </div>
+        </div>
+
+        <div class="inner-container">
+            <div class="inner-borders">
+            
+                <h3>Sticky Position</h3>
+                <p>An element with <span class="css-text">position: sticky;</span> is positioned based on the user's scroll position.
+                    <br><br>
+                    A sticky element toggles between relative and fixed, depending on the scroll position. 
+                    It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed).
+                    <br><br>
+                    The title at the top is sticky. Scroll to the top and activate the <b>outer borders button</b> on the left. This div 
+                    sticks to the top of the screen (<span class="css-text">top: 0</span>) when you scroll down.
+                </p>
+            </div>
+        </div>
+
+        <div id="abs-ex" class="inner-container">
+            <div class="inner-borders">
+        
+                <h3>Absolute position</h3>
+                <p>An element with position: absolute; is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed).
+                    However; if an absolute positioned element has no positioned ancestors, it uses the document body.
+                    <br><br>
+                    Press this button to make this div absolute: <button onclick="makeAbs()">Absolute</button>
+                </p>
+            </div>
+        </div>
+
+        
+
+        <div class="inner-container">
+            <div class="inner-borders">
+        
+                <h3>Filler Div</h3>
+                <p>This div will be covered by the absolute one.</p>
+            </div>
+        </div>
+
+        <div class="inner-container">
+            <div class="inner-borders">
+            
+                <h3>Filler Div</h3>
+                <p>These two will fill up the space that will no longer be taken into account.</p>
+            </div>
+        </div>
+
+        <div class="inner-container">
+            <div class="inner-borders">
+        
+                <h3>Credits</h3>
+                <a href="https://www.w3schools.com/css/css_positioning.asp">https://www.w3schools.com/css/css_positioning.asp</a>
+            </div>
+        </div>
+
+
+        </div>
+    
+    
+        
+    
+    </div>
+
+</body>
+
+<script>
+    var outBorderToggle = false
+
+    function addOutBorders(){
+         
+        if(outBorderToggle){
+            document.getElementById("borders").innerHTML = ""
+            outBorderToggle = false
+            return
+        }
+
+        document.getElementById("borders").innerHTML = "div:not(.inner-borders){border: 3px solid black;}"
+        outBorderToggle = true
+    }
+
+    var inBorderToggle = false
+
+    function addInBorders(){
+        
+        if(inBorderToggle){
+            document.getElementById("in-borders").innerHTML = ""
+            inBorderToggle = false
+            return
+        }
+
+        document.getElementById("in-borders").innerHTML = ".inner-borders{border: 1px solid black;}"
+        inBorderToggle = true
+    }
+
+    addedText = false
+    function moveLeft(){
+        if(addedText){
+            document.getElementById("rel-ex").setAttribute("style", "")
+            addedText = false
+            document.getElementById("temp").outerHTML = "" // Doing inner HTML leaves the div which causes it to reappear later.
+            return
+        }
+        document.getElementById("rel-ex").setAttribute("style", "position: relative; left: -20vw")
+        document.getElementById("rel-ex").innerHTML += "<div id='temp'>This div now has the properties <span class='css-text'>position: relative </span> and <span class='css-text'>left:-20vw</span> (you can set top, left, right and bottom to negative to displace them if they are already as close as they can be to the border).</div>"
+        addedText = true
+    }
+
+    
+    addedText2 = false
+    function makeAbs(){
+        if(addedText2){
+            document.getElementById("abs-ex").setAttribute("style", "")
+            addedText2 = false
+            document.getElementById("temp2").outerHTML = "" // Doing inner HTML leaves the div which causes it to reappear later.
+            return
+        }
+        document.getElementById("abs-ex").setAttribute("style", "position: absolute; width: 46vw; opacity: 0.8")
+        document.getElementById("abs-ex").innerHTML += "<div id='temp2'><b>This div now has the properties <span class='css-text'>position: absolute </span>, <span class='css-text'>width:46vw</span> (Otherwise it extends to the rest of the viewport) and <span class='css-text'>opacity:0.8</span> (so you can see the two divs below a little) </b></div>"
+        addedText2 = true
+    }
+</script>
+
+</html>
