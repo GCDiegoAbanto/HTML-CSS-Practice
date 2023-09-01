@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe recommendation quiz</title>
+
+    <style>
+        .quests{
+            display: grid;
+            grid-template-columns: 150px 150px 150px;
+            padding: 10px 10px 10px 10px;
+            grid-column-gap: 50px;
+            border: solid 1px black
+        }
+
+        .left-side{
+            position: relative;
+            left: 0;
+        }
+        
+        .right-side{
+        }
+
+        .right-side img{
+            width: 100%;
+            height: 80%;
+            padding: 10% 0 10% 0;
+        }
+
+        img{
+            display: none;
+        }
+
+        /* I did not know of this before. This makes the element appear only if it contains the specified attribute */
+        /* without this and the style above it would display borders without an image */
+        img[src]{
+            display: block;
+        }
+
+        /* source: https://stackoverflow.com/questions/10441362/how-can-i-remove-the-border-around-an-image-without-a-source */
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center">A recipe based on your tastes</h1>
+
+    <form>
+        
+        <div class="quests">
+        <h3>Choose a type of carbohydrate:</h3>
+            <div class="left-side">
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')"> Bread</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')"> Rice</p>
+                <p><input type="radio" name="carb"onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Noodles</p>
+                <p><input type="radio" name="carb"onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Potatoes</p>
+            </div>
+            <div class="right-side">
+                <img id="carb-img">
+            </div>
+        </div>
+        <br>
+
+        <div class="quests">
+        <h3>Choose a type of protein:</h3>
+            <div class="left-side">
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')"> Beef</p>
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')"> Chicken</p>
+                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Eggs</p>
+                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Tofu</p>
+            </div>
+            <div class="right-side">
+                <img id="prot-img">
+            </div>
+        </div>
+        <br>
+
+        <div class="quests">
+        <h3>Choose some vegetables:</h3>
+            <div class="left-side">
+                <p><input type="checkbox" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')"> Beef</p>
+                <p><input type="checkbox" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')"> Chicken</p>
+                <p><input type="checkbox" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Eggs</p>
+                <p><input type="checkbox" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Tofu</p>
+            </div>
+            <div class="right-side">
+                <img id="prot-img">
+            </div>
+        </div>
+        <br>
+     
+
+    </form>
+
+</body>
+
+<script></script>
+</html>
