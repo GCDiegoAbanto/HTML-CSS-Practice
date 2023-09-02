@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+
+<!-- Helpful sources for this assignment:
+
+Types of inputs:    https://www.w3schools.com/tags/tag_input.asp
+output: https://www.w3schools.com/tags/tag_output.asp 
+
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,93 +14,180 @@
     <title>Recipe recommendation quiz</title>
 
     <style>
+        body{
+            background-image: url('https://media0.giphy.com/media/l4Jz3a8jO92crUlWM/giphy.gif?cid=6c09b9528r8kih50nlufnvv4539uhv2ua13gpdhx0c1udqp0&ep=v1_gifs_search&rid=giphy.gif&ct=g');
+            background-position: cover;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         .quests{
             display: grid;
-            grid-template-columns: 150px 150px 150px;
+            grid-template-columns: 150px 150px 150px 150px 150px 150px;
             padding: 10px 10px 10px 10px;
             grid-column-gap: 50px;
-            border: solid 1px black
+            border: solid 1px black;
+            background-color: coral;
+            opacity: 0.8;
         }
 
-        .left-side{
-            position: relative;
-            left: 0;
-        }
-        
-        .right-side{
-        }
-
-        .right-side img{
+        .quests img{
             width: 100%;
             height: 80%;
-            padding: 10% 0 10% 0;
+            position: relative;
+            top: 10%;
         }
 
         img{
+            border: 0;
+            padding: 0;
             display: none;
         }
 
         /* I did not know of this before. This makes the element appear only if it contains the specified attribute */
         /* without this and the style above it would display borders without an image */
-        img[src]{
+        img[src*="h"]{
             display: block;
         }
 
         /* source: https://stackoverflow.com/questions/10441362/how-can-i-remove-the-border-around-an-image-without-a-source */
 
+        /* Source: https://nikitahl.com/style-range-input-css#:~:text=One%20simple%20way%20to%20customize,of%20the%20track%20and%20thumb. */
+        input[type="range"] {
+            accent-color: red;
+        }
     </style>
 </head>
 <body>
-    <h1 style="text-align:center">A recipe based on your tastes</h1>
 
-    <form>
+    <h1 style="text-align:center; text-shadow: 3px 2px 10px coral; color: #080808">A recipe based on your tastes</h1>
+
+    <form action="result.html">
         
         <div class="quests">
         <h3>Choose a type of carbohydrate:</h3>
             <div class="left-side">
-                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')"> Bread</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')" required> Bread</p>
                 <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')"> Rice</p>
-                <p><input type="radio" name="carb"onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Noodles</p>
-                <p><input type="radio" name="carb"onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Potatoes</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Noodles</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Potatoes</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', '')"> No carb</p>
+            
             </div>
-            <div class="right-side">
                 <img id="carb-img">
-            </div>
         </div>
         <br>
 
         <div class="quests">
         <h3>Choose a type of protein:</h3>
             <div class="left-side">
-                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')"> Beef</p>
-                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')"> Chicken</p>
-                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Eggs</p>
-                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Tofu</p>
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/beef_PNG33.png')" required> Beef</p>
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/fried_chicken_PNG97927.png')"> Chicken</p>
+                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://clipart-library.com/image_gallery2/Egg-Transparent.png')"> Eggs</p>
+                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/thumbnails/025/222/302/small/tofu-cubes-isolated-on-transparent-background-png.png')"> Tofu</p>
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', '')"> No protein</p>
             </div>
-            <div class="right-side">
                 <img id="prot-img">
-            </div>
+            
         </div>
         <br>
 
         <div class="quests">
         <h3>Choose some vegetables:</h3>
             <div class="left-side">
-                <p><input type="checkbox" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')"> Beef</p>
-                <p><input type="checkbox" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')"> Chicken</p>
-                <p><input type="checkbox" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Eggs</p>
-                <p><input type="checkbox" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Tofu</p>
+                <p><input type="checkbox" name="veg" onclick="veggie(0)"> Onion</p>
+                <p><input type="checkbox" name="veg" onclick="veggie(1)"> Mushroom</p>
+                <p><input type="checkbox" name="veg"onclick="veggie(2)"> Pepper</p>
+                <p><input type="checkbox" name="veg"onclick="veggie(3)"> Tomato</p>
             </div>
-            <div class="right-side">
-                <img id="prot-img">
-            </div>
+                <img id="onion-img">
+                <img id="mushroom-img">
+                <img id="pepper-img">
+                <img id="tomato-img">
         </div>
         <br>
-     
+
+        <div class="quests" style="align-items: center;">
+            <h3>Choose the spice level:</h3>
+                <h4 style="text-align: right;">Mild</h4> <input type="range" min="0" max="3" value="0"> <h4><em>Hot </em></h4>
+            <br>
+        </div>
+        <br>
+
+        <div class="quests" style="align-items: center;">
+            <h3>Choose around how many calories you would like the recipe to have:</h3>
+                <h4 style="text-align: right;">Calories: </h4><input type="range" min="500" max="3000" value="500" oninput="document.getElementById('calories').value=this.value" step="500"> <b><output id="calories">500</output></b>
+            <br>
+        </div>
+
+        <br>
+        <input type="reset" value="Clear choices" onclick="reset()">
+        <input type="submit" value="Give me a recipe">
 
     </form>
 
 </body>
 
-<script></script>
+<script>
+    var onion = false
+    var mushroom = false
+    var pepper = false
+    var tomato = false
+
+    function veggie(n){
+        switch(n){
+            case(0):
+            if(!onion){
+                document.getElementById('onion-img').setAttribute('src', 'https://pngfre.com/wp-content/uploads/Onion-3-2-300x298.png')
+                onion = true
+            }
+            else{
+                document.getElementById('onion-img').setAttribute('src', '')
+                onion = false
+            }
+            break
+
+            case(1):
+            if(!mushroom){
+                document.getElementById('mushroom-img').setAttribute('src', 'https://www.montereymushrooms.com/hubfs/2018%20Website%20Assets/mushroom-cutout.png')
+                mushroom = true
+            }
+            else{
+                document.getElementById('mushroom-img').setAttribute('src', '')
+                mushroom = false
+            }
+            break
+
+            case(2):
+            if(!pepper){
+                document.getElementById('pepper-img').setAttribute('src', 'https://pngimg.com/uploads/pepper/pepper_PNG3265.png')
+                pepper = true
+            }
+            else{
+                document.getElementById('pepper-img').setAttribute('src', '')
+                pepper = false
+            }
+            break
+
+            case(3):
+            if(!tomato){
+                document.getElementById('tomato-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/013/442/147/original/tomatoes-on-a-transparent-background-free-png.png')
+                tomato = true
+            }
+            else{
+                document.getElementById('tomato-img').setAttribute('src', '')
+                tomato = false
+            }
+            break
+        }
+    }
+
+    function reset(){
+        var imgs = document.getElementsByTagName("img")
+        for (let index = 0; index < imgs.length; index++) {
+            imgs[index].setAttribute("src", "")   
+        }
+    }
+
+</script>
 </html>
