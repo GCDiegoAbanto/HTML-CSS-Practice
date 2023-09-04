@@ -29,6 +29,7 @@ output: https://www.w3schools.com/tags/tag_output.asp
             border: solid 1px black;
             background-color: coral;
             opacity: 0.8;
+            border: solid black 2px;
         }
 
         .quests img{
@@ -56,22 +57,27 @@ output: https://www.w3schools.com/tags/tag_output.asp
         input[type="range"] {
             accent-color: red;
         }
+
+        .end-btn{
+            font-size: 1.5em;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <h1 style="text-align:center; text-shadow: 3px 2px 10px coral; color: #080808">A recipe based on your tastes</h1>
 
-    <form action="result.html">
+    <form action="javascript:getRecipe()">
         
         <div class="quests">
         <h3>Choose a type of carbohydrate:</h3>
             <div class="left-side">
-                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')" required> Bread</p>
-                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')"> Rice</p>
-                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')"> Noodles</p>
-                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')"> Potatoes</p>
-                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', '')"> No carb</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://i.pinimg.com/originals/6f/5f/53/6f5f5332cd54ba419022a4882935dbd5.png')" id="bread" required> Bread</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/previews/009/887/170/non_2x/white-rice-in-bow-free-png.png')" id="rice"> Rice</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/noodle_PNG59.png')" id="noodles"> Noodles</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', 'https://pngimg.com/d/potato_PNG98084.png')" id="potatoes"> Potatoes</p>
+                <p><input type="radio" name="carb" onclick="document.getElementById('carb-img').setAttribute('src', '')" id="no"> No carb</p>
             
             </div>
                 <img id="carb-img">
@@ -81,11 +87,11 @@ output: https://www.w3schools.com/tags/tag_output.asp
         <div class="quests">
         <h3>Choose a type of protein:</h3>
             <div class="left-side">
-                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/beef_PNG33.png')" required> Beef</p>
-                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/fried_chicken_PNG97927.png')"> Chicken</p>
-                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://clipart-library.com/image_gallery2/Egg-Transparent.png')"> Eggs</p>
-                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/thumbnails/025/222/302/small/tofu-cubes-isolated-on-transparent-background-png.png')"> Tofu</p>
-                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', '')"> No protein</p>
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/beef_PNG33.png')" id="beef" required> Beef</p>
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', 'https://pngimg.com/d/fried_chicken_PNG97927.png')" id="chicken"> Chicken</p>
+                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://clipart-library.com/image_gallery2/Egg-Transparent.png')" id="eggs"> Eggs</p>
+                <p><input type="radio" name="prot"onclick="document.getElementById('prot-img').setAttribute('src', 'https://static.vecteezy.com/system/resources/thumbnails/025/222/302/small/tofu-cubes-isolated-on-transparent-background-png.png')" id="tofu"> Tofu</p>
+                <p><input type="radio" name="prot" onclick="document.getElementById('prot-img').setAttribute('src', '')" id="nop"> No protein</p>
             </div>
                 <img id="prot-img">
             
@@ -95,10 +101,10 @@ output: https://www.w3schools.com/tags/tag_output.asp
         <div class="quests">
         <h3>Choose some vegetables:</h3>
             <div class="left-side">
-                <p><input type="checkbox" name="veg" onclick="veggie(0)"> Onion</p>
-                <p><input type="checkbox" name="veg" onclick="veggie(1)"> Mushroom</p>
-                <p><input type="checkbox" name="veg"onclick="veggie(2)"> Pepper</p>
-                <p><input type="checkbox" name="veg"onclick="veggie(3)"> Tomato</p>
+                <p><input type="checkbox" name="veg" onclick="veggie(0)" id="onion"> Onion</p>
+                <p><input type="checkbox" name="veg" onclick="veggie(1)" id="mushroom"> Mushroom</p>
+                <p><input type="checkbox" name="veg"onclick="veggie(2)" id="pepper"> Pepper</p>
+                <p><input type="checkbox" name="veg"onclick="veggie(3)" id="tomato"> Tomato</p>
             </div>
                 <img id="onion-img">
                 <img id="mushroom-img">
@@ -109,20 +115,28 @@ output: https://www.w3schools.com/tags/tag_output.asp
 
         <div class="quests" style="align-items: center;">
             <h3>Choose the spice level:</h3>
-                <h4 style="text-align: right;">Mild</h4> <input type="range" min="0" max="3" value="0"> <h4><em>Hot </em></h4>
+                <h4 style="text-align: right;">Mild</h4> <input id="spice" type="range" min="0" max="3" value="0"> <h4><em>Hot </em></h4>
             <br>
         </div>
         <br>
 
         <div class="quests" style="align-items: center;">
             <h3>Choose around how many calories you would like the recipe to have:</h3>
-                <h4 style="text-align: right;">Calories: </h4><input type="range" min="500" max="3000" value="500" oninput="document.getElementById('calories').value=this.value" step="500"> <b><output id="calories">500</output></b>
+                <h4 style="text-align: right;">Calories: </h4><input id="cals" type="range" min="500" max="3000" value="500" oninput="document.getElementById('calories').value=this.value" step="500"> <b><output id="calories">500</output></b>
             <br>
         </div>
 
         <br>
-        <input type="reset" value="Clear choices" onclick="reset()">
-        <input type="submit" value="Give me a recipe">
+        <!-- Personally a fan of how simple reset works, but this needs code for the images only-->
+        <!-- Giving a warning before clearing the choices -->
+        <input class="end-btn" onclick="if(confirm('This will reset all choices. Proceed?')){removeImgs();}else{return(false)}" type="reset" value="Clear choices">
+        
+        <input type="submit" class="end-btn" value="Give me a recipe">
+
+        <div id="result">
+
+            
+        </div>
 
     </form>
 
@@ -138,7 +152,7 @@ output: https://www.w3schools.com/tags/tag_output.asp
         switch(n){
             case(0):
             if(!onion){
-                document.getElementById('onion-img').setAttribute('src', 'https://pngfre.com/wp-content/uploads/Onion-3-2-300x298.png')
+                document.getElementById('onion-img').setAttribute('src', 'https://pngfre.com/wp-content/uploads/Onion-3-1.png')
                 onion = true
             }
             else{
@@ -182,12 +196,160 @@ output: https://www.w3schools.com/tags/tag_output.asp
         }
     }
 
-    function reset(){
+    function removeImgs(){
         var imgs = document.getElementsByTagName("img")
         for (let index = 0; index < imgs.length; index++) {
             imgs[index].setAttribute("src", "")   
         }
     }
+
+    function getRecipe(){
+        var recipeName = ["Burger", "Spicy Chicken Sandwich", "Chicken Milanese", "Eggs and toast", "Tofu sandwich", "Veggie Sandwich", "Onion and mushroom scrambled eggs", "Szechuan Beef", "Arroz con pollo", "Egg over rice", "Vegan Fried rice", "Spicy Teriyaki chicken", "Omelette", "Tofu Salad", "Philly Cheese Steak", "Ground beef and potatoes", "Chicken potato casserole", "Penne Arrabbiata", "Anda Bhurgi", "Mapo tofu", "Chicken noodle soup"]
+        var allRecipes = Array(recipeName.length).fill(0)
+        // There are 21 recipes; they all start at 0 points
+        let c = "no";
+        var carbs = document.getElementsByName('carb');
+                for (i = 0; i < carbs.length; i++) {
+                    if (carbs[i].checked)
+                        c = carbs[i].id
+        }
+
+        // Important note: It's 4am, all the loops below should be a helper function.
+        switch(c){
+            case("bread"): 
+                breadPoints = [5, 5, 2, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0 ,0]
+                for (let i = 0; i < breadPoints.length; i++) {
+                    allRecipes[i] += breadPoints[i]
+                }
+                break
+            case("rice"): 
+                ricePoints = [0, 0, 0, 0, 0, 0, 0, 2, 5, 5, 5, 2, 0, 0, 0, 0, 0, 0, 0, 0 ,0]
+                for (let i = 0; i < ricePoints.length; i++) {
+                    allRecipes[i] += ricePoints[i]
+                }
+                break
+            case("noodles"): 
+                noodlesPoints = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0 ,3]
+                for (let i = 0; i < noodlesPoints.length; i++) {
+                    allRecipes[i] += noodlesPoints[i]
+                }
+                break
+            case("potatoes"): 
+                tatoPoints = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0 ,0]
+                for (let i = 0; i < tatoPoints.length; i++) {
+                    allRecipes[i] += tatoPoints[i]
+                }
+                break
+            case("no"): 
+                noPoints = [-5, -5, -5, -5, -5, -5, 2, 1, -5, -5, -5, -5, 2, 2, -5, -5, -5, -5, 2, 2,-5]
+                for (let i = 0; i < noPoints.length; i++) {
+                    allRecipes[i] += noPoints[i]
+                }
+                break
+        }
+        let p = "nop";
+        var prots = document.getElementsByName('prot');
+                for (i = 0; i < prots.length; i++) {
+                    if (prots[i].checked)
+                        p = prots[i].id
+        }
+        switch(p){
+            case("beef"): 
+                beefPoints = [5, 0, 0, 0, 0, -5, 0, 5, 0, 0, 0, 0, 0, -5, 5, 5, 0, 1, 0, 0 ,0]
+                for (let i = 0; i < beefPoints.length; i++) {
+                    allRecipes[i] += beefPoints[i]
+                }
+                break
+            case("chicken"):
+                chickPoints = [0, 5, 5, 0, 0, -5, 0, 0, 5, 0, 0, 5, 0, -5, 0, 0, 5, 0, 0, 0 ,3]
+                for (let i = 0; i < chickPoints.length; i++) {
+                    allRecipes[i] += chickPoints[i]
+                }
+                break
+            case("eggs"): 
+                eggPoints = [0, 0, 0, 5, 0, -5, 5, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0 ,0]
+                for (let i = 0; i < eggPoints.length; i++) {
+                    allRecipes[i] += eggPoints[i]
+                }
+                break
+            case("tofu"): 
+                tofuPoints = [0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 0, 5 ,0]
+                for (let i = 0; i < tofuPoints.length; i++) {
+                    allRecipes[i] += tofuPoints[i]
+                }
+                break
+            case("nop"): 
+                nopPoints = [-5, -5, -5, -5, -5, 5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, 2, -5, -5 ,-5]
+                for (let i = 0; i < nopPoints.length; i++) {
+                    allRecipes[i] += nopPoints[i]
+                }
+                break
+        }
+
+        var veggies = document.getElementsByName("veg")
+
+        if(veggies[0].checked){ // Onion
+            onionPoints = [2, 0, 0, 0, 0, 2, 3, 0, 1, 0, 1, 2, 3, 1, 2, 0, 0, 0, 2, 0 ,0]
+                for (let i = 0; i < onionPoints.length; i++) {
+                    allRecipes[i] += onionPoints[i]
+                }
+        }
+
+        if(veggies[1].checked){ // Mushroom
+            mushPoints = [1, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0 ,0]
+                for (let i = 0; i < mushPoints.length; i++) {
+                    allRecipes[i] += mushPoints[i]
+                }
+        }
+
+        if(veggies[2].checked){ // Pepper
+            pepPoints = [1, 0, 0, 0, 0, 2, 0, 0, 1, 0, 2, 0, 3, 2, 2, 0, 0, 2, 0, 0 ,0]
+                for (let i = 0; i < pepPoints.length; i++) {
+                    allRecipes[i] += pepPoints[i]
+                }
+        }
+
+        if(veggies[3].checked){ // Tomato
+            tomatoPoints = [2, 0, 0, 0, 1, 2, 0, 0, 1, 0, 0, 0, 3, 0, 0, 1, 1, 2, 5, 0 ,0]
+                for (let i = 0; i < tomatoPoints.length; i++) {
+                    allRecipes[i] += tomatoPoints[i]
+                }
+        }
+        var spicy = parseInt(document.getElementById("spice").value)
+
+        var spicyPoints = [0, 2*spicy, 0, 0, 0, 0, 0, 2*spicy, 0, 0, 0, 2*spicy, 0, 0, 0, 0, 0, 2*spicy, spicy, 2*spicy, 0]
+        for (let i = 0; i < spicyPoints.length; i++) {
+            allRecipes[i] += spicyPoints[i]
+        }
+
+        var spicy = parseInt(document.getElementById("spice").value)
+
+        var spicyPoints = [0, 2*spicy, 0, 0, 0, 0, 0, 2*spicy, 0, 0, 0, 2*spicy, 0, 0, 0, 0, 0, 2*spicy, spicy, 2*spicy, 0]
+        for (let i = 0; i < spicyPoints.length; i++) {
+            allRecipes[i] += spicyPoints[i]
+        }
+
+        // Am I skipping calories a little? Yes.
+
+        var calories = parseInt(document.getElementById("cals").value)
+
+        if(calories < 1500){
+            var lowCalPoints = [0,0,0,2,2,5,1,0,0,2,2,0,0,5,0,0,0,0,1,2,1]
+            for (let i = 0; i < lowCalPoints.length; i++) {
+                allRecipes[i] += lowCalPoints[i]
+            } 
+        }
+        else{
+            var highCalPoints = [2,1,1,0,0,0,1,1,2,0,0,1,1,0,2,1,1,2,0,0,0]
+            for (let i = 0; i < highCalPoints.length; i++) {
+                allRecipes[i] += highCalPoints[i]
+            }
+        }
+
+        var res = recipeName[allRecipes.indexOf(Math.max.apply(Math,allRecipes))]
+        // This variable is painful too look at. It would be better broken down into smaller sections.
+        document.getElementById("result").innerHTML = "<br><div class='quests'><h2>Result:</h2><h3>You should try <em>" + res +  "!</em></h3></div>"
+    }   
 
 </script>
 </html>
