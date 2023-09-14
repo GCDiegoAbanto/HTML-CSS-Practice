@@ -1,11 +1,10 @@
-<!-- Comments on this website:
+<!-- Observations:
 Relies on online images that could be removed/changed at any time, risky.
 It's not friendly with resizing (backgrounds and images retain size but most elements don't)
 Colors picked are close to being split complementary for contrast but not always perfect opposites. 
 Needs more analogous complementary for smoother transitions.
 Too many interactions by default that can compromise loading speed and readability.
 No accesibility options to explore the website with text to speech or similar software.
-Style and scripts are bundled in the same file rather than linked in separate ones
 Lack of descriptive comments (can't make it too easy, sorry).
 -->
 
@@ -16,202 +15,7 @@ Lack of descriptive comments (can't make it too easy, sorry).
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Fox Portfolio</title>
 
-    <style>
-        /* Maybe a good place to mention how incompatible this is with mobile and severely 
-        different sized viewports */
-        body{
-            font-family: "Papyrus";
-            font-size: 140%;
-            padding: 0 2vw 0 2vw;
-        }
-        
-        #trackList{
-            background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b7435a70-95fd-4bc3-be63-c6b5ad6d2cc3/d6fouip-684e211f-a905-42a6-a3ba-66459a4bf26a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I3NDM1YTcwLTk1ZmQtNGJjMy1iZTYzLWM2YjVhZDZkMmNjM1wvZDZmb3VpcC02ODRlMjExZi1hOTA1LTQyYTYtYTNiYS02NjQ1OWE0YmYyNmEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.paNbZNIqCE8FN0W2Jv0uRXS1kMF5B7_aAu4aFosvREA");
-            background-size: 240% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-            color: lightgray;
-            padding: 2vh 0 0 3vw;
-        }
-
-        #trackList td, #trackList th, #trackList h2{
-            border: solid 1px lightgray;
-            padding: 0px 15px 0px 15px;
-            background-color: #530202e0;
-        }
-
-        .clickable:active{
-            opacity: 0.5 !important;
-            font-weight: normal;
-        }
-
-        /* The importance of subordination in ids, tags and classes */
-        #trackList .clickable:hover{
-            background-color: #380101;
-            color: white;
-            font-weight: bold;
-            box-shadow: 1px 1px 5px black;
-        }
-
-        #works .clickable:hover{
-            font-weight: bolder;
-            background-color: lightgray;
-            color: black;
-            opacity: 1;
-        }
-
-        #mp3-player{
-            right: 2vw;
-            bottom: 0vh;
-        }
-
-        iframe{
-            display:none;
-            border: none;
-        }
-
-        iframe[src]{
-            display:block;
-        }
-
-        #mp3-player h2{
-            position: absolute;
-            right: inherit;
-            bottom: inherit;
-            width: 21vw;
-            z-index: 0;
-        }
-
-        #mp3-player iframe{
-            position: absolute;
-            right: inherit;
-            bottom: 1vw;
-        }
-
-        #gallery{
-            display:grid;
-            grid-template-columns: 30% 30% 30%;
-            grid-template-rows: 25% 25% 25%;
-            padding: 2% 30px 30px 2%;
-            grid-column-gap: 5%;
-            grid-row-gap: 3%;
-            background-image: url("https://hdwallpaperim.com/wp-content/uploads/2017/08/23/469599-Undertale-Toriel-Sans-Papyrus-castle-drawing-stars-pixel_art.jpg");
-            background-size: 130% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        #gallery img{
-            width: 100%;
-            height: 100%;
-        }
-
-        .gallery-imgT{
-            opacity: 0.5;
-        }
-
-        .gallery-imgO{
-            opacity: 1;
-        }
-
-        .gallery-imgT:hover{
-            opacity: 1;
-
-        }
-
-        #gallery button{
-            font-weight: bold;
-            font-size: 1.4em;
-            height: 40%;
-            position: relative;
-            bottom: 0;
-            top: 65%;
-        }
-
-        #work-table td, #work-table th{
-            border: solid 1px black;
-            font-weight: bold;
-            text-shadow: black 1px;
-            padding: 0px 15px 0px 15px;
-            
-        }
-
-        .check{
-            background-color: rgba(0, 128, 0, 0.6) !important;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .x{
-            background-color: rgba(255, 0, 0, 0.6) !important;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        #works{
-            padding: 10px 10px 10px 10px;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        /* From https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            }
-
-        .sidebar a {
-            padding: 8px 8px 8px 8px;
-            color: white;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            opacity: 0.6;
-        }
-
-        .sidebar .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            margin-left: 50px;
-        }
-
-        .openbtn {
-            font-size: 20px;
-            cursor: pointer;
-            background-color: #111;
-            color: white;
-            padding: 10px 15px;
-            top: 1vh;
-            left: 1vw;
-            opacity: 0.5;
-            position: fixed;
-        }
-
-        .openbtn:hover {
-            background-color: #444;
-        }
-
-        #main {
-            transition: margin-left .5s;
-        }
-
-        #works a{
-            color:inherit;
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css" >
 </head>
 <!-- These two attributes give information on the divs' locations (onload scroll activates onscroll)-->
 <body onscroll="getPos()" onload="scroll(0, 1)" id="main">
@@ -417,7 +221,7 @@ Lack of descriptive comments (can't make it too easy, sorry).
     </div>
 
     
-    <h2 id="work">Published Media <span style="font-size: 50%;vertical-align: middle;" class="clickable" id="hide" onclick="toggleTable()">[hide]</span>
+    <h2 id="work">Published Media <span style="font-size: 50%;vertical-align: middle;" class="clickable" id="hide" onclick="toggleTable()">[hide table]</span>
     </h2>
     <div id="works">
     <div id="table-cont">
@@ -655,134 +459,24 @@ Lack of descriptive comments (can't make it too easy, sorry).
     See Script and Style for functionality -->
     <div id="mySidebar" class="sidebar">
         <a class="closebtn" onclick="closeNav()">×</a>
-        <a href="#songs">Songs</a>
-            <ul>
-                <a href="#homestuck">Homestuck</a>
-                
-                <a href="#undertale">Undertale</a>
-                
-                <a href="#deltarune">Deltarune</a>
-                
-                <a href="#dweller">Dweller's</a>
-            </ul>
-        <a href="#gallery">Gallery</a>
-        <a href="#work">Works</a>
+        <a href="#songs">Songs</a><span onclick="drop()">v</span>
+            <div id="dropdown">
+                <ul>
+                    <a href="#homestuck">Homestuck</a>
+                    
+                    <a href="#undertale">Undertale</a>
+                    
+                    <a href="#deltarune">Deltarune</a>
+                    
+                    <a href="#dweller">Dweller's</a>
+                </ul>
+            </div>
+        <p><a href="#gal">Gallery</a></p>
+        <p><a href="#work">Works</a></p>
       </div>
     <button class="openbtn" onclick="openNav()">☰</button>  
     
 </body>
 
-<script>
-    var player = document.getElementById("mp3-player")
-    // This function binds the player (or notice) to the track list area
-    function getPos(){
-        // Needs to refresh position each time
-        // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
-        tracks = document.getElementById("trackList").getBoundingClientRect();
-        // Need to account for how big the
-        // Viewport is to see when the list bottom hits the edge of the screen
-        if(tracks.bottom-(window.innerHeight/1) < 0){
-            player.setAttribute("style", "position: relative;")
-        } 
-        else{
-            player.setAttribute("style", "position: fixed;")
-        }
-    }
-    var opaque = false;
-    function transparencyImgs(){
-        var imgs = document.getElementsByClassName("gallery-imgO")
-        if(!opaque){
-            var imgs = document.getElementsByClassName("gallery-imgT")
-        }
-        let len = imgs.length // Dynamic updating messes the length, not using i due to that
-        for (let i = 0; i < len; i++) {
-            if(!opaque){
-                console.log(len)
-                imgs[0].setAttribute("class", "gallery-imgO")
-                continue;
-            }
-            else{
-                imgs[0].setAttribute("class", "gallery-imgT")
-            }
-        }
-        opaque = !opaque;
-    }
-
-    function changeBack(n){
-        
-        var src = ""
-        // In hindsight, the audio player would have been more organized if written like this too
-        switch(n){
-            case(0): src = "background-image: url('https://f4.bcbits.com/img/a0845873233_65')" 
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(3,0,72, 0.6); color: red")
-            break;
-            case(1): src = "background-image: url('https://f4.bcbits.com/img/a1853095200_10.jpg')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0,0,0, 0.6); color: gray")
-            break;
-            case(2): src = "background-image: url('https://ksr-ugc.imgix.net/assets/011/533/904/f58978f175eba8065d1b5afe4545876d_original.png?ixlib=rb-4.1.0&crop=faces&w=1552&h=873&fit=crop&v=1463684109&auto=format&frame=1&q=92&s=11db7d50e2a3790bd8ad7ca0537eed92')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(50, 30, 0, 0.6); color: white")
-            break;
-            case(3): src = "background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/540880/capsule_616x353.jpg?t=1561410603')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(255, 182, 193, 0.6); color: black")
-            break;
-            case(4): src = "background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/623940/capsule_616x353.jpg?t=1623696220')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 50, 0.6); color: white")
-            break;
-            case(5): src = "background-image: url('https://static.wikia.nocookie.net/shipping/images/e/ea/Deltarune-poster.png/revision/latest?cb=20200303124652')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 0, 0.6); color: white")
-            break;
-            case(6): src = "background-image: url('https://img.itch.zone/aW1nLzE4OTM3MTUucG5n/original/a4bQ6r.png')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 0, 0.6); color: blue")
-            break;
-            case(7): src = "background-image: url('https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/games/switch/l/little-town-hero-switch/hero')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(44,150,200,0.6); color: white")
-            break;
-            case(8): src = "background-image: url('https://img.itch.zone/aW1nLzMxNjcxODMucG5n/original/GoZsgO.png')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(39,54,22,0.6); color: lightgreen")
-            break;
-            case(9): src = "background-image: url('https://static.wikia.nocookie.net/mspaintadventures/images/4/42/HiveswapAct2SteamHeader.png/revision/latest?cb=20191031182139')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(20, 0, 70, 0.6); color: white")
-            break;
-            case(10): src = "background-image: url('https://upload.wikimedia.org/wikipedia/en/0/00/Pok%C3%A9mon_Scarlet_and_Violet_banner.png')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(70, 0, 120, 0.6); color: yellow")
-            break;
-            case(11): src = "background-image: url('https://i.ytimg.com/vi/EWyFwDxgj04/hqdefault.jpg')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 0, 0.6); color: white")
-            break;
-            case(12): src = "background-image: url('https://i.ytimg.com/vi/njgcjGojRKk/maxresdefault.jpg')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(5, 140, 250, 0.6); color: white")
-            break;
-            case(13): src = "background-image: url('https://i.ytimg.com/vi/qFow8LkHtlU/maxresdefault.jpg')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(145,85,31, 0.6); color: white")
-            break;
-            case(14): src = "background-image: url('https://www.godisageek.com/wp-content/uploads/Pokemon-Horizons-Artwork.jpg')"
-            document.getElementById("work-table").setAttribute("style", "background-color:rgba(10,70,200, 0.6); color: white;")
-        }
-        document.getElementById("works").setAttribute("style", src)
-    }
-
-    var shown = true
-    function toggleTable(){
-        if(shown){
-            document.getElementById("table-cont").setAttribute("style", "visibility: hidden")
-            document.getElementById("hide").innerHTML = "[show]"
-            shown = false
-        }
-        else{
-            document.getElementById("table-cont").setAttribute("style", "visibility: visible")
-            document.getElementById("hide").innerHTML = "[hide]"
-            shown = true
-        }
-    }
-    // From https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp
-    function openNav() {
-    document.getElementById("mySidebar").style.width = "15vw";
-    document.getElementById("main").style.marginLeft = "15vw";
-    }
-
-    function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-    }
-</script>
+<script src="script.js"></script>
 </html>

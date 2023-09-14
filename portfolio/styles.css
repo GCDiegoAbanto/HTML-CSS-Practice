@@ -1,0 +1,200 @@
+/* Mobile compatibility would be nice, look into it*/
+body{
+    font-family: "Papyrus";
+    font-size: 140%;
+    padding: 0 2vw 0 2vw;
+}
+
+#trackList{
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b7435a70-95fd-4bc3-be63-c6b5ad6d2cc3/d6fouip-684e211f-a905-42a6-a3ba-66459a4bf26a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I3NDM1YTcwLTk1ZmQtNGJjMy1iZTYzLWM2YjVhZDZkMmNjM1wvZDZmb3VpcC02ODRlMjExZi1hOTA1LTQyYTYtYTNiYS02NjQ1OWE0YmYyNmEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.paNbZNIqCE8FN0W2Jv0uRXS1kMF5B7_aAu4aFosvREA");
+    background-size: 240% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: lightgray;
+    padding: 2vh 0 0 3vw;
+}
+
+#trackList td, #trackList th, #trackList h2{
+    border: solid 1px lightgray;
+    padding: 0px 15px 0px 15px;
+    background-color: #530202e0;
+}
+
+.clickable:active{
+    opacity: 0.5 !important;
+    font-weight: normal;
+}
+
+/* The importance of subordination in ids, tags and classes */
+#trackList .clickable:hover{
+    background-color: #380101;
+    color: white;
+    font-weight: bold;
+    box-shadow: 1px 1px 5px black;
+}
+
+#works .clickable:hover{
+    font-weight: bolder;
+    background-color: lightgray;
+    color: black;
+    opacity: 1;
+}
+
+#mp3-player{
+    right: 2vw;
+    bottom: 0vh;
+}
+
+iframe{
+    display:none;
+    border: none;
+}
+
+iframe[src]{
+    display:block;
+}
+
+#mp3-player h2{
+    position: absolute;
+    right: inherit;
+    bottom: inherit;
+    width: 21vw;
+    z-index: 0;
+}
+
+#mp3-player iframe{
+    position: absolute;
+    right: inherit;
+    bottom: 1vw;
+}
+
+#gallery{
+    display:grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 25% 25% 25%;
+    padding: 2% 30px 30px 2%;
+    grid-column-gap: 5%;
+    grid-row-gap: 3%;
+    background-image: url("https://hdwallpaperim.com/wp-content/uploads/2017/08/23/469599-Undertale-Toriel-Sans-Papyrus-castle-drawing-stars-pixel_art.jpg");
+    background-size: 130% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#gallery img{
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-imgT{
+    opacity: 0.5;
+}
+
+.gallery-imgO{
+    opacity: 1;
+}
+
+.gallery-imgT:hover{
+    opacity: 1;
+
+}
+
+#gallery button{
+    font-weight: bold;
+    font-size: 1.4em;
+    height: 40%;
+    position: relative;
+    bottom: 0;
+    top: 65%;
+}
+
+#work-table td, #work-table th{
+    border: solid 1px black;
+    font-weight: bold;
+    text-shadow: black 1px;
+    padding: 0px 15px 0px 15px;
+    
+}
+
+.check{
+    background-color: rgba(0, 128, 0, 0.6) !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+.x{
+    background-color: rgba(255, 0, 0, 0.6) !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+#works{
+    padding: 10px 10px 10px 10px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* From https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
+.sidebar {
+    color: white;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    }
+
+.sidebar a {
+    padding: 8px 8px 8px 8px;
+    transition: 0.3s;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    opacity: 0.6;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    top: 1vh;
+    opacity: 0.4;
+    position: fixed;
+}
+
+.openbtn:hover {
+    opacity: 1;
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left .5s;
+}
+
+#works a{
+    color:inherit;
+}
+
+#dropdown{
+    background-color: #530202;
+    overflow: hidden;
+    max-height: 200px;
+    transition: max-height .5s;
+}
