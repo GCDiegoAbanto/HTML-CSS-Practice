@@ -179,6 +179,7 @@ https://css-tricks.com/adding-stroke-to-web-text/
         /* End of images, beginning of container and text wrappers */
 
         .content{
+            /* When using transparent colors beware of the readability*/
             background-color: #4b1842f1;
             position: relative;
             left: 18vw;
@@ -210,8 +211,11 @@ https://css-tricks.com/adding-stroke-to-web-text/
             position: fixed;
             bottom: 5vh;
             -webkit-animation: linear infinite;
+            animation: linear infinite;
             -webkit-animation-name: run;
+            animation-name: run;
             -webkit-animation-duration: 5s;
+            animation-duration: 5s;
         }
 
         /* This is a personal addition, it only triggers when hovering so you can hold the
@@ -220,6 +224,26 @@ https://css-tricks.com/adding-stroke-to-web-text/
             content: url("https://media.tenor.com/2UYGTk1wkEwAAAAi/annoying-dog-undertale.gif");
             height: 15vh;
             width: 15%;
+        }
+
+        @keyframes run{
+            0% {
+                right: 0;
+            }
+            48% {
+                -webkit-transform: rotateY(0deg); 
+            }
+            50% { 
+                right: calc(100% - 120px);
+                -webkit-transform: rotateY(180deg); 
+            }
+            98% {
+                -webkit-transform: rotateY(180deg); 
+            }
+            100% {
+                right: 0;    
+                -webkit-transform: rotateY(0deg);
+            }
         }
 
         @-webkit-keyframes run {
@@ -258,7 +282,10 @@ https://css-tricks.com/adding-stroke-to-web-text/
         <img id="logo-large" src="img/icon_large.png">
         <h1 id="title">Toby Fox</h1>
         <!-- Change language button, should be a dropdown -->
+        <!-- Not used at the moment:-->
+        <!--
         <div id="lang_cont"><img alt="earth icon" id="globe" src="https://www.freeiconspng.com/thumbs/earth-png/earth-png-17.png"><button id="lang"><h2>EN</h2></button></div>
+        -->
     </div>
 
     <!-- Navigation sidebar with anchors to sections of the website -->
