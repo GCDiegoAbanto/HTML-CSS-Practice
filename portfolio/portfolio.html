@@ -1,0 +1,788 @@
+<!-- Comments on this website:
+Relies on online images that could be removed/changed at any time, risky.
+It's not friendly with resizing (backgrounds and images retain size but most elements don't)
+Colors picked are close to being split complementary for contrast but not always perfect opposites. 
+Needs more analogous complementary for smoother transitions.
+Too many interactions by default that can compromise loading speed and readability.
+No accesibility options to explore the website with text to speech or similar software.
+Style and scripts are bundled in the same file rather than linked in separate ones
+Lack of descriptive comments (can't make it too easy, sorry).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fox Portfolio</title>
+
+    <style>
+        /* Maybe a good place to mention how incompatible this is with mobile and severely 
+        different sized viewports */
+        body{
+            font-family: "Papyrus";
+            font-size: 140%;
+            padding: 0 2vw 0 2vw;
+        }
+        
+        #trackList{
+            background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b7435a70-95fd-4bc3-be63-c6b5ad6d2cc3/d6fouip-684e211f-a905-42a6-a3ba-66459a4bf26a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I3NDM1YTcwLTk1ZmQtNGJjMy1iZTYzLWM2YjVhZDZkMmNjM1wvZDZmb3VpcC02ODRlMjExZi1hOTA1LTQyYTYtYTNiYS02NjQ1OWE0YmYyNmEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.paNbZNIqCE8FN0W2Jv0uRXS1kMF5B7_aAu4aFosvREA");
+            background-size: 240% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: lightgray;
+            padding: 2vh 0 0 3vw;
+        }
+
+        #trackList td, #trackList th, #trackList h2{
+            border: solid 1px lightgray;
+            padding: 0px 15px 0px 15px;
+            background-color: #530202e0;
+        }
+
+        .clickable:active{
+            opacity: 0.5 !important;
+            font-weight: normal;
+        }
+
+        /* The importance of subordination in ids, tags and classes */
+        #trackList .clickable:hover{
+            background-color: #380101;
+            color: white;
+            font-weight: bold;
+            box-shadow: 1px 1px 5px black;
+        }
+
+        #works .clickable:hover{
+            font-weight: bolder;
+            background-color: lightgray;
+            color: black;
+            opacity: 1;
+        }
+
+        #mp3-player{
+            right: 2vw;
+            bottom: 0vh;
+        }
+
+        iframe{
+            display:none;
+            border: none;
+        }
+
+        iframe[src]{
+            display:block;
+        }
+
+        #mp3-player h2{
+            position: absolute;
+            right: inherit;
+            bottom: inherit;
+            width: 21vw;
+            z-index: 0;
+        }
+
+        #mp3-player iframe{
+            position: absolute;
+            right: inherit;
+            bottom: 1vw;
+        }
+
+        #gallery{
+            display:grid;
+            grid-template-columns: 30% 30% 30%;
+            grid-template-rows: 25% 25% 25%;
+            padding: 2% 30px 30px 2%;
+            grid-column-gap: 5%;
+            grid-row-gap: 3%;
+            background-image: url("https://hdwallpaperim.com/wp-content/uploads/2017/08/23/469599-Undertale-Toriel-Sans-Papyrus-castle-drawing-stars-pixel_art.jpg");
+            background-size: 130% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #gallery img{
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-imgT{
+            opacity: 0.5;
+        }
+
+        .gallery-imgO{
+            opacity: 1;
+        }
+
+        .gallery-imgT:hover{
+            opacity: 1;
+
+        }
+
+        #gallery button{
+            font-weight: bold;
+            font-size: 1.4em;
+            height: 40%;
+            position: relative;
+            bottom: 0;
+            top: 65%;
+        }
+
+        #work-table td, #work-table th{
+            border: solid 1px black;
+            font-weight: bold;
+            text-shadow: black 1px;
+            padding: 0px 15px 0px 15px;
+            
+        }
+
+        .check{
+            background-color: rgba(0, 128, 0, 0.6) !important;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .x{
+            background-color: rgba(255, 0, 0, 0.6) !important;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #works{
+            padding: 10px 10px 10px 10px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* From https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            }
+
+        .sidebar a {
+            padding: 8px 8px 8px 8px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            opacity: 0.6;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            margin-left: 50px;
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            top: 1vh;
+            left: 1vw;
+            opacity: 0.5;
+            position: fixed;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #main {
+            transition: margin-left .5s;
+        }
+
+        #works a{
+            color:inherit;
+        }
+
+    </style>
+</head>
+<!-- These two attributes give information on the divs' locations (onload scroll activates onscroll)-->
+<body onscroll="getPos()" onload="scroll(0, 1)" id="main">
+    <center><h1>Toby Fox </h1></center>
+    <hr>
+    
+    <p>Toby 'Radiation' Fox (Born October 11, 1991), mostly known for creating the indie video game UNDERTALE, has also created various Homestuck songs and later contributed to the Hiveswap soundtrack.</p>
+    <!-- Songs obtained from: https://tobyfox.fandom.com/wiki/Toby_Fox#:~:text=Toby%20Fox's%20music%20first%20appeared,song%20John%20Sleeps%20%2F%20Skaian%20Magicant.-->
+    
+    <h2 id="songs">Notable songs (Chronological Order):</h2>
+    <ul id="trackList">
+        <h3 id="homestuck"><li>Homestuck</li></h3>
+            <table class="discography">
+                <tr>
+                    <th>Track</th>
+                    <th>Release year</th>
+                </tr>
+                <tr>
+                    <!-- https://stackoverflow.com/questions/25779966/youtube-iframe-loop-doesnt-work -->
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/c8WR5WQY38g?autoplay=1&loop=1&playlist=c8WR5WQY38g')">John Sleeps / Skaian Magicant</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/5NACWZBDtN8?autoplay=1&loop=1&playlist=5NACWZBDtN8')">Black</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/jyDdV8eIHGE?autoplay=1&loop=1&playlist=jyDdV8eIHGE')">Descend</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/QaJsqJ_oV2g?autoplay=1&loop=1&playlist=QaJsqJ_oV2g')">Savior of the Waking World</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/gOSnen64a7M?autoplay=1&loop=1&playlist=gOSnen64a7M')">Sburban Jungle</td>
+                    <td>2011</td>
+                </tr>
+                <tr>
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/xbUTyGfolX0?autoplay=1&loop=1&playlist=xbUTyGfolX0')">MeGaLoVania</td>
+                    <td>2011</td>
+                </tr>
+                <tr>
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/nLrChSME0T8?autoplay=1&loop=1&playlist=nLrChSME0T8')">The Lordling</td>
+                    <td>2013</td>
+                </tr>
+                <tr>
+                    <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/bjAK8D5ytiU?autoplay=1&loop=1&playlist=bjAK8D5ytiU')">Oppa Toby Style</td>
+                    <td>2016</td>
+                </tr>
+
+            </table>
+        <h3 id="undertale"><li>Undertale</li></h3>
+        <table class="discography">
+            <tr>
+                <th>Track</th>
+                <th>Release year</th>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/83jGCWCcBzc?autoplay=1&loop=1&playlist=83jGCWCcBzc')">Your Best Friend</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/h1wSPmlZV-w?autoplay=1&loop=1&playlist=h1wSPmlZV-w')">Determination</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/xflkF-sqNaM?autoplay=1&loop=1&playlist=xflkF-sqNaM')">Heartache</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/zdeZwAk6ULE?autoplay=1&loop=1&playlist=zdeZwAk6ULE')">Bonestrousle</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/qrBB3_rFPjg?autoplay=1&loop=1&playlist=qrBB3_rFPjg')">Spear of Justice</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/qrtt7mgwCTw?autoplay=1&loop=1&playlist=qrtt7mgwCTw')">ASGORE</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/yWjavxcGfqM?autoplay=1&loop=1&playlist=yWjavxcGfqM')">Finale</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/tz82xbLvK_k?autoplay=1&loop=1&playlist=tz82xbLvK_k')">Hopes and Dreams</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/aWBtpBwzzdM?autoplay=1&loop=1&playlist=aWBtpBwzzdM')">Battle Against a True Hero</td>
+                <td>2015</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/c5daGZ96QGU?autoplay=1&loop=1&playlist=c5daGZ96QGU')">MEGALOVANIA</td>
+                <td>2015</td>
+            </tr>
+        </table>
+
+        <h3 id="deltarune"><li>Deltarune</li></h3>
+        <table class="discography">
+            <tr>
+                <th>Track</th>
+                <th>Release year</th>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/CDH2MjvFGC0?autoplay=1&loop=1&playlist=CDH2MjvFGC0')">The Legend</td>
+                <td>2018</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/xYVhUjee-oM?autoplay=1&loop=1&playlist=xYVhUjee-oM')">Rude Buster</td>
+                <td>2018</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/gQZxGRucsMQ?autoplay=1&loop=1&playlist=gQZxGRucsMQ')">Vs. Lancer</td>
+                <td>2018</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/SBHgJzYNR6s?autoplay=1&loop=1&playlist=SBHgJzYNR6s')">Vs. Susie</td>
+                <td>2018</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/fFsTQCSYY4Q?autoplay=1&loop=1&playlist=fFsTQCSYY4Q')">Chaos King</td>
+                <td>2018</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/8gkTtNefxws?autoplay=1&loop=1&playlist=8gkTtNefxws')">The World Revolving</td>
+                <td>2018</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/Xb1zr2QqzcM?autoplay=1&loop=1&playlist=Xb1zr2QqzcM')">A CYBER'S WORLD?</td>
+                <td>2021</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/gPQCBoghg0E?autoplay=1&loop=1&playlist=gPQCBoghg0E')">Berdly</td>
+                <td>2021</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/ksolyw2atr0?autoplay=1&loop=1&playlist=ksolyw2atr0')">Attack of the Killer Queen</td>
+                <td>2021</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/-8p8VowCmgE?autoplay=1&loop=1&playlist=-8p8VowCmgE')">BIG SHOT</td>
+                <td>2021</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/4eM7J52Yp1U?autoplay=1&loop=1&playlist=4eM7J52Yp1U')">Until Next Time</td>
+                <td>2021</td>
+            </tr>
+        </table>
+
+        <h3 id="dweller"><li>Dweller's Empty Path</li></h3>
+        <table class="discography">
+            <tr>
+                <th>Track</th>
+                <th>Release year</th>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/f5Lmf2V0jwg?autoplay=1&loop=1&playlist=f5Lmf2V0jwg')">Leaves Fill the Path</td>
+                <td>2020</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/RbkS2jdEAWg?autoplay=1&loop=1&playlist=RbkS2jdEAWg')">Inside the Castle</td>
+                <td>2020</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/Nwc5WBr6WAg?autoplay=1&loop=1&playlist=Nwc5WBr6WAg')">Breath of the Dragon</td>
+                <td>2020</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/IH7XzRC9trw?autoplay=1&loop=1&playlist=IH7XzRC9trw')">Forgotten Memories</td>
+                <td>2020</td>
+            </tr>
+            <tr>
+                <td class="clickable" onclick="document.getElementById('song').setAttribute('src','https://www.youtube.com/embed/1FPwPLfIubg?autoplay=1&loop=1&playlist=1FPwPLfIubg')">Be Brave!</td>
+                <td>2020</td>
+            </tr>
+            
+        </table>
+    
+        <!-- https://www.w3schools.com/html/html5_audio.asp -->
+        <div id="mp3-player" style="position:relative">
+            <h2>Click a track's name to play it!</h2>
+            <iframe id="song" width="380" height="240" allow="autoplay" loop></iframe>
+        </div>
+        <br>
+    </ul>
+
+    <h2 id="gal">Gallery</h2>
+    <div id="gallery">
+        <img class="gallery-imgT" src="https://upload.wikimedia.org/wikiversity/en/8/8e/TobyFox.png">
+        <img class="gallery-imgT" src="https://www.videogameschronicle.com/files/2019/03/Toby-Fox.jpg">
+        <img class="gallery-imgT" src="data:image/jpeg;base64,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">
+        <img class="gallery-imgT" src="https://media.licdn.com/dms/image/C5603AQHtPbEacUxXuw/profile-displayphoto-shrink_800_800/0/1633374715740?e=2147483647&v=beta&t=BU5NjWlSo91MQDj17xmZ7RD9VpEwICU7kXASKuL8xBU">
+        <img class="gallery-imgT" src="https://upload.wikimedia.org/wikipedia/en/a/af/Toby_Fox_dog.jpg">
+        <img class="gallery-imgT" src="https://bloximages.newyork1.vip.townnews.com/unionleader.com/content/tncms/assets/v3/editorial/c/13/c13b477c-2d60-5370-aa00-e3f46acd010f/5fcd6c49d44f6.image.jpg">
+        <img class="gallery-imgT" src="https://pbs.twimg.com/profile_images/1304111803614613504/NKxFjarS_400x400.jpg">
+        <img class="gallery-imgT" src="https://preview.redd.it/400qzanqz0g81.jpg?auto=webp&s=a64fcc0e7ab7a306b9160845183bfcb3a796ea66">
+        <img class="gallery-imgT" src="https://static.wikia.nocookie.net/undertale/images/4/4a/Toby_Fox_photograph.jpg/revision/latest/thumbnail/width/360/height/360?cb=20160201032352">
+        <div></div>
+        <button onclick="transparencyImgs()">Toggle transparency</button>
+    </div>
+
+    
+    <h2 id="work">Published Media <span style="font-size: 50%;vertical-align: middle;" class="clickable" id="hide" onclick="toggleTable()">[hide]</span>
+    </h2>
+    <div id="works">
+    <div id="table-cont">
+    <table id="work-table" style="background-color: rgba(255, 255, 255, 0.662); color:black;">
+            
+            <th>Name</th>
+            
+            <th>Composer</th>
+            
+            <th>Director</th>
+            
+            <th>Year</th>
+
+            <th>Details</th>
+            
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(0)">
+            <td>Halloween Hack: Bad Fur Day</td>
+            <!-- Ascii code is more likely to work on multiple browsers -->
+            <td class="check">&#x2713;</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td>2008</td>
+
+            <td><a target="_blank" href="https://archive.org/details/earthbound-radiations-halloween-bad-fur-day-edition-v-1-08-2009-radiationhack">More...</a></td>
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(1)">
+            <td>I Miss You – EarthBound 2012</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2012</td>
+
+            <td><a target="_blank" href="https://sleepytimejesse.bandcamp.com/album/i-miss-you-earthbound-2012">More...</a></td>
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(2)">
+            <td>Undertale</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td>2015</td>
+
+            <td><a target="_blank" href="https://undertale.com/">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(3)">
+            <td>Rose of Winter</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2016</td>
+
+            <td><a target="_blank" href="https://pillowfight.itch.io/rose-of-winter">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(4)">
+            <td>Hiveswap: Act 1</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2017</td>
+
+            <td><a target="_blank" href="https://www.hiveswap.com/hiveswap-act-1">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(5)">
+            <td>Deltarune</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td>2018</td>
+
+            <td><a target="_blank" href="https://deltarune.com/">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(6)">
+            <td>Escaped Chasm</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2019</td>
+            
+            <td><a target="_blank" href="https://tuyoki.itch.io/escaped-chasm">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(7)">
+            <td>Little Town Hero</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2019</td>
+
+            <td><a target="_blank" href="https://store.steampowered.com/app/1183510/Little_Town_Hero/">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(8)">
+            <td>Dweller's Empty Path</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2020</td>
+
+            <td><a target="_blank" href="https://tuyoki.itch.io/dwellers-empty-path">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(9)">
+            <td>Hiveswap: Act 2</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2020</td>
+
+            <td><a target="_blank" href="https://www.hiveswap.com/hiveswap-act-2">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(10)">
+            <td>Pokemon Scarlet and Violet</td>
+            
+            <td class="check">&#x2713;</td>
+            
+            <td class="x">X</td>
+            
+            <td>2020</td>
+
+            <td><a target="_blank" href="https://scarletviolet.pokemon.com/en-us/">More...</a></td>
+
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(11)">
+            <td>Hammerhead Shark Song</td>
+            
+            <td class="x">X</td>
+
+            <td class="check">&#x2713;</td>
+            
+            <td>2020</td>
+            
+            <td><a target="_blank" href="https://www.youtube.com/watch?v=EWyFwDxgj04">More...</a></td>
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(12)">
+            <td>"Skies Forever Blue"</td>
+
+            <td class="check">&#x2713;</td>
+            
+            <td class="check">&#x2713;</td>
+
+            <td>2022</td>
+
+            <td><a target="_blank" href="https://www.youtube.com/watch?v=njgcjGojRKk">More...</a></td>
+
+        </tr>
+
+        <tr class="clickable" onclick="changeBack(13)">
+            <td>"The Greatest Living Show"</td>
+
+            <td class="check">&#x2713;</td>
+
+            <td class="check">&#x2713;</td>
+            
+            <td>2023</td>
+
+            <td><a target="_blank" href="https://www.youtube.com/watch?v=qFow8LkHtlU">More...</a></td>
+
+        </tr>
+        
+        <tr class="clickable" onclick="changeBack(14)">
+            <td>Pokemon Horizons</td>
+
+            <td class="check">&#x2713;</td>
+
+            <td class="x">X</td>
+            
+            <td>2023</td>
+
+            <td><a target="_blank" href="https://en.wikipedia.org/wiki/Pok%C3%A9mon_Horizons:_The_Series">More...</a></td>
+
+        </tr>
+    </table>
+    </div>
+    
+    
+    </div>
+
+    <h3>Credits:</h3>
+    <ul>
+        <a target="_blank" href="https://tobyfox.fandom.com/wiki/Toby_Fox">https://tobyfox.fandom.com/wiki/Toby_Fox.</a><br>
+        <a target="_blank" href="https://homestuck-and-mspa-music.fandom.com/wiki/Toby_Fox">https://homestuck-and-mspa-music.fandom.com/wiki/Toby_Fox</a><br>
+        <a target="_blank" href="https://en.wikipedia.org/wiki/Toby_Fox">https://en.wikipedia.org/wiki/Toby_Fox</a>
+    </ul>
+
+    <!-- Sidebar from https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp
+    See Script and Style for functionality -->
+    <div id="mySidebar" class="sidebar">
+        <a class="closebtn" onclick="closeNav()">×</a>
+        <a href="#songs">Songs</a>
+            <ul>
+                <a href="#homestuck">Homestuck</a>
+                
+                <a href="#undertale">Undertale</a>
+                
+                <a href="#deltarune">Deltarune</a>
+                
+                <a href="#dweller">Dweller's</a>
+            </ul>
+        <a href="#gallery">Gallery</a>
+        <a href="#work">Works</a>
+      </div>
+    <button class="openbtn" onclick="openNav()">☰</button>  
+    
+</body>
+
+<script>
+    var player = document.getElementById("mp3-player")
+    // This function binds the player (or notice) to the track list area
+    function getPos(){
+        // Needs to refresh position each time
+        // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+        tracks = document.getElementById("trackList").getBoundingClientRect();
+        // Need to account for how big the
+        // Viewport is to see when the list bottom hits the edge of the screen
+        if(tracks.bottom-(window.innerHeight/1) < 0){
+            player.setAttribute("style", "position: relative;")
+        } 
+        else{
+            player.setAttribute("style", "position: fixed;")
+        }
+    }
+    var opaque = false;
+    function transparencyImgs(){
+        var imgs = document.getElementsByClassName("gallery-imgO")
+        if(!opaque){
+            var imgs = document.getElementsByClassName("gallery-imgT")
+        }
+        let len = imgs.length // Dynamic updating messes the length, not using i due to that
+        for (let i = 0; i < len; i++) {
+            if(!opaque){
+                console.log(len)
+                imgs[0].setAttribute("class", "gallery-imgO")
+                continue;
+            }
+            else{
+                imgs[0].setAttribute("class", "gallery-imgT")
+            }
+        }
+        opaque = !opaque;
+    }
+
+    function changeBack(n){
+        
+        var src = ""
+        // In hindsight, the audio player would have been more organized if written like this too
+        switch(n){
+            case(0): src = "background-image: url('https://f4.bcbits.com/img/a0845873233_65')" 
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(3,0,72, 0.6); color: red")
+            break;
+            case(1): src = "background-image: url('https://f4.bcbits.com/img/a1853095200_10.jpg')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0,0,0, 0.6); color: gray")
+            break;
+            case(2): src = "background-image: url('https://ksr-ugc.imgix.net/assets/011/533/904/f58978f175eba8065d1b5afe4545876d_original.png?ixlib=rb-4.1.0&crop=faces&w=1552&h=873&fit=crop&v=1463684109&auto=format&frame=1&q=92&s=11db7d50e2a3790bd8ad7ca0537eed92')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(50, 30, 0, 0.6); color: white")
+            break;
+            case(3): src = "background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/540880/capsule_616x353.jpg?t=1561410603')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(255, 182, 193, 0.6); color: black")
+            break;
+            case(4): src = "background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/623940/capsule_616x353.jpg?t=1623696220')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 50, 0.6); color: white")
+            break;
+            case(5): src = "background-image: url('https://static.wikia.nocookie.net/shipping/images/e/ea/Deltarune-poster.png/revision/latest?cb=20200303124652')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 0, 0.6); color: white")
+            break;
+            case(6): src = "background-image: url('https://img.itch.zone/aW1nLzE4OTM3MTUucG5n/original/a4bQ6r.png')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 0, 0.6); color: blue")
+            break;
+            case(7): src = "background-image: url('https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/en_US/games/switch/l/little-town-hero-switch/hero')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(44,150,200,0.6); color: white")
+            break;
+            case(8): src = "background-image: url('https://img.itch.zone/aW1nLzMxNjcxODMucG5n/original/GoZsgO.png')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(39,54,22,0.6); color: lightgreen")
+            break;
+            case(9): src = "background-image: url('https://static.wikia.nocookie.net/mspaintadventures/images/4/42/HiveswapAct2SteamHeader.png/revision/latest?cb=20191031182139')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(20, 0, 70, 0.6); color: white")
+            break;
+            case(10): src = "background-image: url('https://upload.wikimedia.org/wikipedia/en/0/00/Pok%C3%A9mon_Scarlet_and_Violet_banner.png')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(70, 0, 120, 0.6); color: yellow")
+            break;
+            case(11): src = "background-image: url('https://i.ytimg.com/vi/EWyFwDxgj04/hqdefault.jpg')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(0, 0, 0, 0.6); color: white")
+            break;
+            case(12): src = "background-image: url('https://i.ytimg.com/vi/njgcjGojRKk/maxresdefault.jpg')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(5, 140, 250, 0.6); color: white")
+            break;
+            case(13): src = "background-image: url('https://i.ytimg.com/vi/qFow8LkHtlU/maxresdefault.jpg')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(145,85,31, 0.6); color: white")
+            break;
+            case(14): src = "background-image: url('https://www.godisageek.com/wp-content/uploads/Pokemon-Horizons-Artwork.jpg')"
+            document.getElementById("work-table").setAttribute("style", "background-color:rgba(10,70,200, 0.6); color: white;")
+        }
+        document.getElementById("works").setAttribute("style", src)
+    }
+
+    var shown = true
+    function toggleTable(){
+        if(shown){
+            document.getElementById("table-cont").setAttribute("style", "visibility: hidden")
+            document.getElementById("hide").innerHTML = "[show]"
+            shown = false
+        }
+        else{
+            document.getElementById("table-cont").setAttribute("style", "visibility: visible")
+            document.getElementById("hide").innerHTML = "[hide]"
+            shown = true
+        }
+    }
+    // From https://www.w3schools.com/howto/howto_js_collapse_sidebar.asp
+    function openNav() {
+    document.getElementById("mySidebar").style.width = "15vw";
+    document.getElementById("main").style.marginLeft = "15vw";
+    }
+
+    function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    }
+</script>
+</html>
